@@ -1,0 +1,92 @@
+/**
+*
+* app/style/mixins.styl
+* Mixins
+*
+**/
+
+// CENTER
+center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+centerX() {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+centerY() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// CONTAINER
+container() {
+  width: 90%;
+  max-width: 1024px;
+  margin: auto;
+}
+
+// OVERLAY
+overlay() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: overlayColor;
+  transition: 0.2s;
+    &:hover {
+      opacity: 1;
+    }
+}
+
+// CIRCLE
+circle(d) {
+  width: d;
+  height: d;
+  border-radius: d;
+}
+
+// MEDIA QUERIES
+mobile() {
+  @media screen and (max-device-width: 480px) {
+    {block}
+  }
+}
+desktop() {
+  @media screen and (min-width: 1024px){
+    {block}
+  }
+}
+mediaqueries(maxWidth) {
+  @media screen and (max-width: maxWidth){
+    {block}
+  }
+}
+
+// FONT
+webfont(family, fileUrl, hack-chrome-windows = false, weight = 'normal') {
+    @font-face {
+        font-family: family;
+        src: url(fileUrl + '.eot');
+        src: url(fileUrl + '.eot?#iefix') format('embedded-opentype'),
+            url(fileUrl + '.woff') format('woff'),
+            url(fileUrl + '.ttf') format('truetype'),
+            url(fileUrl + '.svg#'+ family) format('svg')
+        font-weight: weight;
+        font-style: normal;
+    }
+    if (hack-chrome-windows) {
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            @font-face {
+                font-family family
+                src url(fileUrl + '.svg#'+ family) format('svg')
+            }
+        }
+    }
+}

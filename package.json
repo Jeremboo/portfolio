@@ -1,0 +1,72 @@
+{
+  "name": "web-starter",
+  "version": "1.0.0",
+  "description": "My organization for web developpement with React and Webpack.",
+  "main": "app/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jeremboo/web-starter/tree/webpack-react"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --progress --inline --hot --port 3333 --config config/webpack.config.js --content-base public --history-api-fallback",
+    "build": "npm run clean && webpack --progress --config config/webpack.production.config.js",
+    "clean": "rm -rf public",
+    "test": "NODE_PATH=app mocha config/mocha.config.js ./**/*.spec.js --recursive",
+    "test:watch": "npm test -- --watch"
+  },
+  "keywords": [
+    "starter",
+    "kit",
+    "html5",
+    "web",
+    "react",
+    "webpack"
+  ],
+  "author": "Jérémie Boulay <jeremi.boulay@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "history": "^2.1.2",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.7.0",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "babel": "^6.5.2",
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-module-alias": "^1.6.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-register": "^6.14.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.23.1",
+    "enzyme": "^2.4.1",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
+    "expect": "^1.20.2",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "html-webpack-plugin": "^2.7.2",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^9.5.0",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.0.2",
+    "postcss-loader": "^0.8.0",
+    "poststylus": "^0.2.3",
+    "react-addons-test-utils": "^15.3.1",
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.1.1",
+    "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
