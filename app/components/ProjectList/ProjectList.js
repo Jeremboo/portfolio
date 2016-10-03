@@ -8,13 +8,14 @@
 import React, { PropTypes } from 'react';
 import './ProjectList.styl';
 
-import Project from 'component/Project/Project'
+import Project from 'components/Project/Project'
 
 // TODO cascade animation when showed = true;
 const ProjectList = ({ showed, projects, onProjectClick }) =>
   <ul className="ProjectList">
-    {projects.map(project =>
+    {projects.map((project, index) =>
       <Project
+        key={index}
         project={project}
         onProjectClick={onProjectClick}
       />

@@ -1,15 +1,18 @@
-import { makeActionCreator } from 'core/utils';
+import { createAction, createActions } from 'redux-actions';
 
 // ACTIONS NAME
 export const REQUEST_PROJECTS = 'REQUEST_PROJECTS';
 export const SUCCESS_PROJECTS = 'SUCCESS_PROJECTS';
 export const FAILURE_PROJECTS = 'FAILURE_PROJECTS';
 
-// ACTIONS
-export const requestProjects = makeActionCreator(REQUEST_PROJECTS);
-export const successProjects = makeActionCreator(SUCCESS_PROJECTS, 'projects');
-export const failureProjects = makeActionCreator(FAILURE_PROJECTS, 'error');
+export const { successProjects, failureProjects, requestProjects } = createActions(
+  { SUCCESS_PROJECTS: (title) => ({ title }) },
+  REQUEST_PROJECTS,
+  FAILURE_PROJECTS,
+);
 
+
+// Middleware
 export const fetchProjects = () => dispatch => {
   dispatch(requestProjects);
   // TODO AJAX API

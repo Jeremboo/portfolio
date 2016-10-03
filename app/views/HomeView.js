@@ -1,19 +1,12 @@
-/**
-*
-* app/views/HomeView.js
-* HomeView
-*
-**/
-
 import React from 'react';
 
-import Header from 'component/Header/Header';
+import Header from 'components/Header/Header';
 import MenuContainer from 'containers/MenuContainer';
-import ProjetsContainer from 'containers/ProjetsContainer';
+import ProjetsContainer from 'containers/ProjectsContainer';
 
 const HomeView = () => (
   <section className="_content">
-    <Header showed="true" />
+    <Header showed={false} />
     <MenuContainer />
     <ProjetsContainer />
   </section>

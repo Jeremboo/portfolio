@@ -1,5 +1,6 @@
+import { handleActions } from 'redux-actions';
+
 import { REQUEST_PROJECTS, SUCCESS_PROJECTS, FAILURE_PROJECTS } from 'core/actions/projects';
-import { createReducer } from 'core/utils';
 
 const initialState = {
   isFetching: false,
@@ -7,25 +8,19 @@ const initialState = {
   error: '',
 };
 
-const projects = createReducer(initialState, {
-  [REQUEST_PROJECTS](state) {
-    return Object.assign({}, state, {
-      isFetching: true,
-      error: '',
-    });
-  },
-  [SUCCESS_PROJECTS](state, action) {
-    return Object.assign({}, state, {
-      isFetching: false,
-      projects: action.projects,
-    });
-  },
-  [FAILURE_PROJECTS](state, action) {
-    return Object.assign({}, state, {
-      isFetching: false,
-      error: action.error,
-    });
-  },
-});
+const projects = handleActions({
+  REQUEST_PROJECTS: (state) => Object.assign({}, state, {
+    isFetching: true,
+    error: '',
+  }),
+  SUCCESS_PROJECTS: (state, action) => Object.assign({}, state, {
+    isFetching: false,
+    projects: action.payload,
+  }),
+  FAILURE_PROJECTS: (state, action) => Object.assign({}, state, {
+    isFetching: false,
+    error: action.error,
+  }),
+}, initialState);
 
 export default projects;
