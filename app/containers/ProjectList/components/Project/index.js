@@ -1,6 +1,6 @@
 /**
 *
-* app/components/Project/Project.js
+* app/containers/ProjectList/components/Project.js
 * Project
 *
 **/

@@ -1,13 +1,13 @@
 // import { expect } from 'chai';
 import expect from 'expect'
 
-import { getProjects, fetchProjects } from './projects';
+import { getProjects, fetchProjects } from './middlewares';
 
 // TODO simulate store
 const dispatch = expect.createSpy();
 const projectExample = { id: 5, content: 'content' };
 const getEmptyState = () => ({ projects: [] });
-const getState = () => ({ projects: [projectExample] });
+const getState = () => ({ projectList: [projectExample] });
 
 describe('Middleware getProjects()', function() {
 
@@ -21,7 +21,7 @@ describe('Middleware getProjects()', function() {
   });
 
   it('return the projects when they already loaded on state', function() {
-    const { projects } = getState();
+    const { projectList } = getState();
     expect(getProjects()(dispatch, getState)).toEqual(projects);
   });
 });

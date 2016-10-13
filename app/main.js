@@ -9,7 +9,7 @@ import Root from 'views/Root';
 window.React = React;
 
 const initialState = {
-  projects: {
+  projectList: {
     isFetching: false,
     projects: [
       { name: 'Project1' },

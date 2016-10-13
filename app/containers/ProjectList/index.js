@@ -1,18 +1,18 @@
 /**
 *
-* app/containers/ProjetsContainer.js
+* app/containers/ProjetsList.js
 * Load the project list
 *
 **/
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getProjects, openProject } from 'core/actions/projects';
+import { getProjectList, openProject } from './modules/middlewares';
 
-import ProjectList from 'components/ProjectList/ProjectList';
+import ProjectList from './components/ProjectList';
 
 export default connect(
-  state => state.projects,
+  state => state.projectList,
   dispatch => ({
     onProjectClick: id => dispatch(openProject(id)),
   }),

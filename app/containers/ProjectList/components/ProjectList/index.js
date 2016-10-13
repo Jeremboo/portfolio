@@ -8,7 +8,7 @@
 import React, { PropTypes } from 'react';
 import './ProjectList.styl';
 
-import Project from 'components/Project/Project'
+import Project from '../Project'
 
 // TODO cascade animation when showed = true;
 const ProjectList = ({ showed, projects, onProjectClick }) =>
