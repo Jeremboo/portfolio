@@ -1,0 +1,100 @@
+
+.Projects {
+  margin-top: $margin;
+  justify-content: space-between;
+
+  &, &-wrapper, &-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  // Gradients when scroll
+  &-wrapper {
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: $margin;
+      background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    }
+
+    &::after {
+      top: auto;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+    }
+  }
+
+  // The scrolled list
+  &-list {
+    overflow: auto;
+
+    .Projects-project:first-child {
+      margin-top: $margin;
+    }
+  }
+
+  // One item on the list
+  &-project {
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    padding: $margin * 0.25 0;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+
+    // wrapper
+    a, p {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    // content
+    a::after, p::after, span {
+      display: block;
+      transition: 0.2s;
+    }
+
+    // Background
+    a::after, p::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: -2px;
+      left: -2px;
+      width: 0%;
+      height: 100%;
+      background-color: $main-color;
+    }
+
+    &:hover {
+      span { transform: translate(5px, -5px); }
+
+      a::after, p::after {
+        width: 100%;
+        top: 0px;
+        left: 0px;
+      }
+    }
+
+    // Transforms
+    &._main {
+      margin-bottom: $margin * 1;
+    }
+    &._about {
+      // margin-top: $margin * 4;
+      p {
+        padding-right: $margin * 0.5;
+      }
+    }
+  }
+}

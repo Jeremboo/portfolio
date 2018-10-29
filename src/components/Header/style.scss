@@ -1,0 +1,44 @@
+
+$backFontSize: 8rem;
+$frontFontSize: 3.2rem;
+
+.Header {
+  margin-left: -50px; // To align the E with the column
+  &-title {
+    display: inline-block;
+    position: relative;
+    color: $main-color;
+    font-weight: bold;
+    font-size: $backFontSize;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+
+    span {
+      position: absolute;
+      right: 22px;
+      bottom: 4px;
+      font-size: 3.2rem;
+      font-weight: normal;
+      text-transform: none;
+      letter-spacing: 6px;
+      color: #070707;
+    }
+
+    &.test {
+      span {
+        right: auto;
+        left: 0;
+        display: flex;
+        align-items: flex-end;
+
+        &::before {
+          content: '';
+          background-color: black;
+          width: 200px;
+          height: 3px;
+
+        }
+    }
+  }
+  }
+}

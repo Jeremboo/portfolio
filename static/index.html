@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <title>folio</title>
+  <meta name="description" content="">
+  <!--
+  Facebook metadata
+  Info: https://developers.facebook.com/docs/sharing/webmasters
+  Validator: https://developers.facebook.com/tools/debug/
+  -->
+  <meta property="og:title" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:locale" content="en_US">
+  <!--
+  Twitter metadata
+  Info: https://dev.twitter.com/cards/overview
+  Validator: https://cards-dev.twitter.com/validator
+  -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:creator" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+  <meta charset="utf-8">
+  <base href="{{BASENAME}}">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{{stylesheet}}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ASSET_PATH}}images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ASSET_PATH}}images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ASSET_PATH}}images/favicons/favicon-16x16.png">
+<link rel="manifest" href="{{ASSET_PATH}}images/favicons/site.webmanifest">
+<link rel="mask-icon" href="{{ASSET_PATH}}images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="{{ASSET_PATH}}images/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="{{ASSET_PATH}}images/favicons/mstile-144x144.png">
+<meta name="msapplication-config" content="{{ASSET_PATH}}images/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff"></head>
+  <body>
+  <header class="Header">
+    <h1 class="Header-title">Jérémie Boulay <span>- Creative Developer -</span></h1>
+  </header>
+
+  <section class="Projects">
+    <div class="Projects-wrapper">
+      <ul class="Projects-list">
+        <li class="Projects-project _main"><a target="_blank" title="Scribble lab" href="https://github.com/Jeremboo/codevember"><span>Scribble lab</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="Design my smart" href="https://www.designmy.smart.com"><span>2018 _ Design my smart</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="MSC Roulette" href=""><span>2018 _ MSC Roulette</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="Wellnesslab" href="http://watermelonsugar.cc/wellnesslab/"><span>2018 _ Wellnesslab</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="Woli" href=""><span>2018 _ Woli</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="TypoX" href="https://typox.fr"><span>2017 _ TypoX</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="INRS fête ses 70 ans" href="http://jeremieboulay.fr"><span>2017 _ INRS Fête ses 70 ans</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="Smart Electric Drive" href="https://vimeo.com/246451865"><span>2017 _ Smart Electric Drive</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="Brainstorm Proto" href="http://jeremieboulay.fr"><span>2017 _ Brainstorm Proto</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="Omniwomen" href="http://www.omniwomen.fr/"><span>2017 _ Omniwomen</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="Voeux Voyage SNCF" href="https://vimeo.com/202891167"><span>2016 _ Voeux Voyage SNCF</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="Sweet Pursuit - ChristmasXP2016" href="https://christmasexperiments.com/2016/12/sweet-pursuit/"><span>2016 _ Sweet Pursuit</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="Ricochet" href="http://jeremieboulay.fr/ricochet"><span>2016 _ Ricochet</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="L'O de Sisley" href="http://jeremieboulay.fr/o-de-sisley"><span>2016 _ L'O de Sisley</span></a></li>
+        <li class="Projects-project _hidden"><a target="_blank" title="CallToMake" href="https://github.com/Jeremboo/callToMake"><span>2016 _ Call to make</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="Shooting Star Equalizer" href="http://jeremieboulay.fr/projects/shootinStarEqualiser/"><span>2016 _ Shooting Star Equalizer</span></a></li>
+        <li class="Projects-project"><a target="_blank" title="SNCF Prévisions" href="https://sncf-project.herokuapp.com/"><span>2015 _ SNCF Prévisions</span></a></li>
+      </ul>
+    </div>
+    <div class="Projects-project _about"><p><span>•</span></p></div>
+  </section>
+
+  {{#if vendor}}
+    <script type="text/javascript" src="{{vendor}}"></script>
+  {{/if}}
+  <script type="text/javascript" src="{{bundle}}"></script>
+  </body>
+</html>
