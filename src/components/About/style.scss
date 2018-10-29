@@ -1,0 +1,68 @@
+
+.About {
+  margin-top: $margin;
+
+  &-title {
+    margin-bottom: $margin;
+  }
+
+  &-paragraph {
+    padding: $margin * 0.25 0;
+  }
+
+  &-footer {
+    margin-top: $margin * 2;
+  }
+
+  &-sharings {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: $margin * 0.25 0;
+    margin-top: $margin * 0.25;
+    position: relative;
+
+    // HACK
+    .Link {
+      margin-right: $margin * 0.25;
+
+      & > *::after {
+        display: none;
+      }
+    }
+
+    // Background
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      bottom: 6px;
+      left: -4px;
+      width: 0%;
+      height: 15px;
+      background-color: $main-color;
+      transition: 0.2s;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+        bottom: 4px;
+        left: -2px;
+      }
+    }
+  }
+
+  ._return {
+    margin-top: $margin;
+  }
+
+  ._linkedin {
+    margin-top: -2px;
+  }
+
+  ._mail {
+    margin-top: 1px;
+  }
+
+}
