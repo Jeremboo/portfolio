@@ -25,7 +25,6 @@
     // HACK
     .Link {
       margin-right: $margin * 0.25;
-
       & > *::after {
         display: none;
       }
@@ -43,14 +42,6 @@
       background-color: $main-color;
       transition: 0.2s;
     }
-
-    &:hover {
-      &::after {
-        width: 100%;
-        bottom: 4px;
-        left: -2px;
-      }
-    }
   }
 
   ._return {
@@ -65,4 +56,19 @@
     margin-top: 1px;
   }
 
+  @include mq($until: tablet) {
+    &-paragraph {
+      line-height: 2rem;
+    }
+  }
+}
+
+.no-touch .About {
+  &-sharings:hover {
+    &::after {
+      width: 100%;
+      bottom: 4px;
+      left: -2px;
+    }
+  }
 }

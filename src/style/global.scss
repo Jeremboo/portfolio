@@ -27,6 +27,10 @@ body {
   padding: $margin * 6 $margin * 9;
   font-size: 1.2rem;
   letter-spacing: 2.5px;
+
+  @include mq($until: tablet) {
+    padding: $margin * 2 $margin * 2;
+  }
 }
 
 * {

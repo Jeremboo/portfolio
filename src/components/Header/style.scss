@@ -1,44 +1,52 @@
 
-$backFontSize: 8rem;
-$frontFontSize: 3.2rem;
+
+$titleSize: 80; // CHANGE THIS VALUE TO CHANGE THE TITLE SIZE
+$subtitleSize: 32;
 
 .Header {
   margin-left: -50px; // To align the E with the column
+
   &-title {
     display: inline-block;
     position: relative;
     color: $main-color;
     font-weight: bold;
-    font-size: $backFontSize;
+    font-size: (0.1rem * $titleSize);
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
-
-    span {
-      position: absolute;
-      right: 22px;
-      bottom: 4px;
-      font-size: 3.2rem;
-      font-weight: normal;
-      text-transform: none;
-      letter-spacing: 6px;
-      color: #070707;
-    }
-
-    &.test {
-      span {
-        right: auto;
-        left: 0;
-        display: flex;
-        align-items: flex-end;
-
-        &::before {
-          content: '';
-          background-color: black;
-          width: 200px;
-          height: 3px;
-
-        }
-    }
   }
+
+  &-subtitle {
+    position: absolute;
+    right: (22em / $subtitleSize);
+    bottom: (4em / $subtitleSize);
+    font-size: (32em / $titleSize);
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: (6em / $subtitleSize);
+    line-height: initial;
+    color: #070707;
+  }
+
+  // MOBILE
+  @include mq($until: tablet) {
+    // V1 ------------------------------
+    margin-left: -5px;
+    &-title {
+      line-height: 5.2rem;
+      letter-spacing: 4.5px;
+      font-size: 6rem;
+      // Boulay
+      span:nth-child(2) {
+        letter-spacing: 0px;
+      }
+    }
+    &-subtitle {
+      letter-spacing: 3.5px;
+      bottom: -6px;
+      right: 0;
+    }
+
+    // V2 --------
   }
 }

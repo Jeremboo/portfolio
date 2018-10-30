@@ -36,16 +36,6 @@
     }
   }
 
-  &:hover {
-    span { transform: translate(5px, -5px); }
-
-    .Link-wrapper::after {
-      width: 100%;
-      top: 0px;
-      left: 0px;
-    }
-  }
-
   // Transforms
   &._main {
     margin-bottom: $margin * 1;
@@ -55,5 +45,16 @@
       padding-right: $margin * 0.5;
     }
   }
+}
 
+.no-touch .Link {
+  &:hover {
+    span { transform: translate(5px, -5px); }
+
+    .Link-wrapper::after {
+      width: 100%;
+      top: 0px;
+      left: 0px;
+    }
+  }
 }

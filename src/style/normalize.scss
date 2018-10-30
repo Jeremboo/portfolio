@@ -95,8 +95,8 @@ a {
  * active/hover state.
  */
 
-a:active,
-a:hover {
+.no-touch a:active,
+.no-touch a:hover {
   outline: 0;
 }
 
