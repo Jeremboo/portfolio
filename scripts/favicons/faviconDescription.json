@@ -14,7 +14,7 @@
     "desktopBrowser": {},
     "windows": {
       "pictureAspect": "noChange",
-      "backgroundColor": "#da532c",
+      "backgroundColor": "#c9f0ff",
       "onConflict": "override",
       "assets": {
         "windows80Ie10Tile": false,
@@ -28,7 +28,7 @@
     },
     "androidChrome": {
       "pictureAspect": "noChange",
-      "themeColor": "#ffffff",
+      "themeColor": "#c9f0ff",
       "manifest": {
         "name": "my-app",
         "display": "standalone",
@@ -43,7 +43,7 @@
     },
     "safariPinnedTab": {
       "pictureAspect": "silhouette",
-      "themeColor": "#5bbad5"
+      "themeColor": "#c9f0ff"
     }
   },
   "settings": {
