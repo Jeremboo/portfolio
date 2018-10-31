@@ -31,9 +31,10 @@ class App {
     this.toggleContentAnim.add(about.show());
 
     // Show the website
-    this.showIntroduction(() => {
-      footer.onClick(this.toggleContent.bind(App));
-    });
+    this.showIntroduction();
+
+    // Active toggling
+    footer.onClick(this.toggleContent.bind(App));
   }
 
   /**
@@ -41,7 +42,7 @@ class App {
    * * ANIMATIONS
    * * *******************
    */
-  static showIntroduction(onComplete) {
+  static showIntroduction(onComplete = f => f) {
     document.body.style.opacity = 1;
     const tl = new TimelineLite({ onComplete });
     tl.add(header.show());
@@ -53,11 +54,6 @@ class App {
     // tl.totalProgress(1).kill();
   }
 
-  /**
-   * * *******************
-   * * INTERACTIONS
-   * * *******************
-   */
   static toggleContent() {
     this.toggled = !this.toggled;
 

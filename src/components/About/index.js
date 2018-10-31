@@ -19,7 +19,7 @@ export default {
     tl.to(title, 1, { ...fadeInToVarsClassic });
     tl.staggerTo(paragraphLines, 0.5, { ...fadeInToVarsClassic }, 0.05, '-=0.9');
     // TODO faire venir après
-    tl.staggerTo(buttons, 0.5, { ...fadeInToVarsClassic }, 0.03, '-=0.75');
+    tl.staggerTo(buttons, 0.5, { ...fadeInToVarsClassic }, 0.03, '-=0.7');
     return tl;
   }
 };
