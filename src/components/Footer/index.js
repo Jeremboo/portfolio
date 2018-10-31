@@ -4,7 +4,7 @@ import { fadeInFromVars, fadeInToVars } from '../../props';
 
 // Get elements
 const button = document.getElementById('about-button');
-TweenMax.set(button, { ...fadeInFromVars, y: 8, rotationZ: 0 });
+TweenMax.set(button, { ...fadeInFromVars, y: 8, x: 0, rotationZ: 0 });
 
 // EXPORT
 export default {

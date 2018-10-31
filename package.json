@@ -25,6 +25,7 @@
   "license": "ISC",
   "repository": "https://github.com/Jeremboo/folio",
   "dependencies": {
+    "domready": "^1.0.8",
     "gsap": "^1.19.1",
     "howler": "^2.0.4"
   },
