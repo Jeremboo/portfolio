@@ -15,6 +15,9 @@
   }
 
   // animtations
+  &-title, &-paragraph {
+    span { display: flex; }
+  }
   &-title, &-paragraph, &-footer {
     overflow: hidden;
   }

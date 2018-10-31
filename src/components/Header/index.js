@@ -23,11 +23,11 @@ export default {
     const tm = new TimelineLite();
 
     // JEREMIE BOULAY anim
-    title.classList.add('_animated');
+    title.classList.add('_withMask');
     tm.add(titleFirstNameAnim.show(tweenDuration, tweenToProps));
     tm.add(titleLastNameAnim.show(tweenDuration, tweenToProps), '-=1.5');
     tm.from(title, 1.6, { x: 64, ease: Power3.easeOut }, 0);
-    tm.add(() => { title.classList.remove('_animated'); });
+    tm.add(() => { title.classList.remove('_withMask'); });
 
     // SUBTITLE anim
     tm.to(subtitle, 1.5, { ...fadeInToVars, ease: elasticEaseStrong }, '-=1.65');

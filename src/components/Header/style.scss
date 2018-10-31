@@ -9,6 +9,7 @@ $subtitleSize: 32;
   &-title {
     display: inline-block;
     position: relative;
+    max-width: 100%;
     color: $main-color;
     font-weight: bold;
     font-size: (0.1rem * $titleSize);
@@ -55,27 +56,54 @@ $subtitleSize: 32;
   }
 }
 
-// animation props
-span { display: flex; }
 
-// space after JEREMIE
-#title > span:first-child {
-  margin-right: $margin;
+/**
+ * * *******************
+ * * ANIMATIONS
+ * * *******************
+*/
+.Header-title, #title {
+  span { display: flex; }
 }
-// Bottom mask
-#title._animated::after {
-  content: '';
-  margin-top: -18px;
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 0;
-  width: 110%;
-  height: 200px;
-  background-color: white;
-  // border: 1px solid red;
-}
-// The Y letter
-#title > span+span > span:last-child {
-  margin-left: -5px;
+
+#title {
+  // Bottom mask
+  &._withMask > span {
+    position: relative;
+
+    &::after {
+      content: '';
+      margin-top: -18px;
+      position: absolute;
+      z-index: 1;
+      top: 100%;
+      left: 0;
+      width: 110%;
+      height: 200px;
+      background-color: white;
+      // border: 1px solid red;
+    }
+  }
+
+  // Space after JEREMIE
+  & > span:first-child {
+    margin-right: $margin;
+  }
+  // The Y letter
+  & > span+span > span:last-child {
+    margin-left: -5px;
+  }
+
+  // MOBILE
+  @include mq($until: tablet) {
+    flex-direction: column;
+
+    & > span+span {
+      z-index: 1;
+    }
+
+    &._withMask > span::after {
+      margin-top: -5px;
+    }
+  }
 }
