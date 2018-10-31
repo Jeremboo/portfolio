@@ -4,6 +4,10 @@
   padding: $margin * 0.25 0;
   cursor: pointer;
 
+  // animation
+  overflow: hidden;
+  padding-right: 5px;
+
   // Imgs
   img {
     width: 1.6rem;

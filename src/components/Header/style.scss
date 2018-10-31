@@ -12,6 +12,7 @@ $subtitleSize: 32;
     color: $main-color;
     font-weight: bold;
     font-size: (0.1rem * $titleSize);
+    // line-height: 6rem;
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
   }
@@ -26,6 +27,10 @@ $subtitleSize: 32;
     letter-spacing: (6em / $subtitleSize);
     line-height: initial;
     color: #070707;
+
+    // animation props
+    transform-origin: 0 0;
+    overflow: hidden;
   }
 
   // MOBILE
@@ -49,4 +54,29 @@ $subtitleSize: 32;
 
     // V2 --------
   }
+}
+
+// animation props
+span { display: flex; }
+
+// space after JEREMIE
+#title > span:first-child {
+  margin-right: $margin;
+}
+// Bottom mask
+#title._animated::after {
+  content: '';
+  margin-top: -18px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  width: 110%;
+  height: 200px;
+  background-color: white;
+  // border: 1px solid red;
+}
+// The Y letter
+#title > span+span > span:last-child {
+  margin-left: -5px;
 }
