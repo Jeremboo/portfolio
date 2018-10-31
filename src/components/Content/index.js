@@ -1,9 +1,11 @@
 import { TweenMax, TimelineLite } from 'gsap';
 
-import { fadeInFromVars, fadeInToVars } from '../../props';
+import { fadeInFromVars, fadeInToVars, fadeOutToVarsClassic } from '../../props';
 
 // Get elements
-const items = document.querySelectorAll('.Projects .Link:not(._hidden) > a');
+const items = Array.from(document.querySelectorAll('.Projects .Link:not(._hidden) > a'));
+const reversedItems = [...items].reverse();
+
 items.forEach((item) => {
   TweenMax.set(item, { ...fadeInFromVars });
 });
@@ -19,4 +21,7 @@ export default {
     tl.to(aboutButton, 1, { ...fadeInToVars }, '-=0.55');
     return tl;
   },
+  hide: () => {
+    return TweenMax.staggerTo(reversedItems, 0.3, { ...fadeOutToVarsClassic }, 0.03);
+  }
 };
