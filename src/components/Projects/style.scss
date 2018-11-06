@@ -29,4 +29,13 @@
       margin-top: $margin;
     }
   }
+
+  // #####
+  // Item open
+  &._itemOpen {
+    // HACK
+    .Link {
+      opacity: 0.2;
+    }
+  }
 }

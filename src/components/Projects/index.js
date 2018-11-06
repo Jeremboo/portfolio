@@ -16,6 +16,10 @@ class Projects {
     // Set style for the animations
     this.items.forEach((item) => {
       TweenMax.set(item, { ...fadeInFromVars });
+
+      item.addEventListener('click', () => {
+        this._openItem(item.parentNode);
+      });
     });
   }
 
@@ -26,6 +30,15 @@ class Projects {
    */
   toggleVisibility() {
     this.wrapper.classList.toggle('_hidden');
+  }
+
+  _openItem(linkItem) {
+    this.wrapper.classList.add('_itemOpen');
+
+    for (let i = 0; i < this.items.length; i++) {
+      this.items[i].parentNode.classList.remove('_open');
+    }
+    linkItem.classList.add('_open');
   }
 
   /**

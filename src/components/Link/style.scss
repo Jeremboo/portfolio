@@ -3,6 +3,7 @@
   box-sizing: border-box;
   padding: $margin * 0.25 0;
   cursor: pointer;
+  transition: opacity 0.5s;
 
   // animation
   overflow: hidden;
@@ -50,13 +51,23 @@
     }
   }
 
+  // Openned
   &._open {
-    padding: $margin;
+    opacity: 1 !important;
+
+    span { transform: translate(5px, -5px); }
+
+    .Link-wrapper:after {
+      width: 0% !important;
+      left: 100% !important;
+    }
   }
 }
 
 .no-touch .Link {
   &:hover {
+    opacity: 1 !important;
+
     span { transform: translate(5px, -5px); }
 
     .Link-wrapper::after {

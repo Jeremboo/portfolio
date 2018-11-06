@@ -19,6 +19,7 @@
     "output": "./build/"
   },
   "production": {
+    "BASENAME": "http://jeremieboulay.fr/newPortfolio/",
     "timestamp": false,
     "output": "./release/",
     "minify": true,
