@@ -1,27 +1,67 @@
-import { TweenMax, TimelineLite } from 'gsap';
+import { TimelineLite } from 'gsap';
 
-import { fadeInFromVars, fadeInToVars, fadeOutToVarsClassic } from '../../props';
+import projects from '../Projects';
+import about from '../About';
+import footer from '../Footer';
 
-// Get elements
-const items = Array.from(document.querySelectorAll('.Projects .Link:not(._hidden) > a'));
-const reversedItems = [...items].reverse();
+class Content {
+  constructor() {
+    // Vars
+    this.toggled = false;
 
-items.forEach((item) => {
-  TweenMax.set(item, { ...fadeInFromVars });
-});
+    // Binding
+    this.toggleContent = this.toggleContent.bind(this);
 
-const aboutButton = document.getElementById('about-button');
-TweenMax.set(aboutButton, { ...fadeInFromVars, rotationZ: 0, y: 8, x: 0 });
+    // Compute animtations
+    this.toggleAnim = this.toggle();
 
-// EXPORT
-export default {
-  show: () => {
-    const tl = new TimelineLite();
-    tl.staggerTo(items, 1, { ...fadeInToVars }, 0.06);
-    tl.to(aboutButton, 1, { ...fadeInToVars }, '-=0.55');
-    return tl;
-  },
-  hide: () => {
-    return TweenMax.staggerTo(reversedItems, 0.3, { ...fadeOutToVarsClassic }, 0.03);
+    // Active toggling
+    footer.onClick(this.toggleContent);
   }
-};
+
+  /**
+   * * *******************
+   * * INTERACTIONS
+   * * *******************
+   */
+  toggleContent() {
+    this.toggled = !this.toggled;
+    if (this.toggled) {
+      this.toggleAnim.play();
+    } else {
+      this.toggleAnim.reverse();
+    }
+  }
+
+  toggleContentVisibility() {
+    projects.toggleVisibility();
+    about.toggleVisibility();
+  }
+
+  /**
+   * * *******************
+   * * ANIMATIONS
+   * * *******************
+   */
+  show() {
+    const tl = new TimelineLite();
+    tl.add(projects.show());
+    tl.add(footer.show(), '-=0.55');
+    return tl;
+  }
+
+  hide() {
+    return projects.hide();
+  }
+
+  toggle() {
+    const tl = new TimelineLite({ paused: true });
+    tl.add(this.hide());
+    tl.add(this.toggleContentVisibility);
+    tl.add(about.show());
+    return tl;
+  }
+}
+
+const content = new Content();
+export default content;

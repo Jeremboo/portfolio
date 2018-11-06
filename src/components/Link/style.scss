@@ -49,6 +49,10 @@
       padding-right: $margin * 0.5;
     }
   }
+
+  &._open {
+    padding: $margin;
+  }
 }
 
 .no-touch .Link {
