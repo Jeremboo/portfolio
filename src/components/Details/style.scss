@@ -1,0 +1,26 @@
+
+.Details {
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  &-line {
+    display: flex;
+    padding: 2px 0;
+    overflow: hidden;
+  }
+
+  // Tag list
+  &-tags {
+    display: none;
+    font-size: 0.8rem;
+  }
+  &-tag {
+    padding-right: $margin * 0.75;
+    padding-bottom: $margin * 0.25;
+  }
+
+  // Footer button
+  button {
+    margin-top: $margin * 0.75;
+  }
+}

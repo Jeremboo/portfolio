@@ -1,5 +1,7 @@
 import { TweenMax } from 'gsap';
 
+import details from '../Details';
+
 import { fadeInFromVars, fadeInToVars, fadeOutToVarsClassic } from '../../props';
 
 
@@ -20,7 +22,7 @@ class Projects {
       TweenMax.set(item, { ...fadeInFromVars });
 
       // Add interaction
-      item.addEventListener('click', () => {
+      item.parentNode.addEventListener('click', () => {
         this.selectProject(item.parentNode);
       });
     });
@@ -37,10 +39,17 @@ class Projects {
 
   // Project selection
   selectProject(project) {
+    if (project.classList.contains('_open')) return;
+
+    // Animation
     this.wrapper.classList.add('_itemOpen');
     this.unselectedProject();
     this.selectedProject = project;
     this.selectedProject.classList.add('_open');
+
+    // Open project
+    const projectId = this.selectedProject.getAttribute('data-id');
+    details.showDetail(projectId);
   }
 
   unselectedProject() {

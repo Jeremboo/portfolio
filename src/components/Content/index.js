@@ -3,6 +3,8 @@ import { TimelineLite } from 'gsap';
 import projects from '../Projects';
 import about from '../About';
 import footer from '../Footer';
+import details from '../Details';
+
 
 class Content {
   constructor() {
@@ -28,6 +30,7 @@ class Content {
     this.toggled = !this.toggled;
     if (this.toggled) {
       projects.closeSelection();
+      details.hideCurrentDetail();
       this.toggleAnim.play();
     } else {
       this.toggleAnim.reverse();
