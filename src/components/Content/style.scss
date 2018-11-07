@@ -2,4 +2,11 @@
 .Content {
   justify-content: space-between;
   margin-top: $margin;
+
+  &-wrapper {
+    // HACK
+    // TODO change this part to a better way
+    min-height: 270px;
+    height: 40vh;
+  }
 }

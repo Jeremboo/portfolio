@@ -27,6 +27,7 @@ class Content {
   toggleContent() {
     this.toggled = !this.toggled;
     if (this.toggled) {
+      projects.closeSelection();
       this.toggleAnim.play();
     } else {
       this.toggleAnim.reverse();
@@ -46,7 +47,7 @@ class Content {
   show() {
     const tl = new TimelineLite();
     tl.add(projects.show());
-    tl.add(footer.show(), '-=0.55');
+    tl.add(footer.show(), '-=0.35');
     return tl;
   }
 

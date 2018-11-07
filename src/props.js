@@ -7,5 +7,6 @@ export const elasticEaseStrong = Elastic.easeOut.config(0.7, 0.6);
 export const fadeInFromVars = { opacity: 0, x: 16, y: 78, rotationZ: 15 };
 export const fadeInToVars = { opacity: 1, x: 0, y: 0, rotationZ: 0, ease: elasticEase };
 
+export const fadeInFromVarsClassic = { opacity: 0, x: 4, y: 16, rotationZ: 5 };
 export const fadeInToVarsClassic = { opacity: 1, x: 0, y: 0, rotationZ: 0, ease: Power3.easeOut };
-export const fadeOutToVarsClassic = { opacity: 0, x: 4, y: 16, rotationZ: 5, ease: Power3.easeIn };
+export const fadeOutToVarsClassic = { ...fadeInFromVarsClassic, ease: Power3.easeIn };

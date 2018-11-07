@@ -13,12 +13,15 @@ class Projects {
     // Bind
     this.toggleVisibility = this.toggleVisibility.bind(this);
 
+    this.selectedProject = false;
+
     // Set style for the animations
     this.items.forEach((item) => {
       TweenMax.set(item, { ...fadeInFromVars });
 
+      // Add interaction
       item.addEventListener('click', () => {
-        this._openItem(item.parentNode);
+        this.selectProject(item.parentNode);
       });
     });
   }
@@ -32,13 +35,22 @@ class Projects {
     this.wrapper.classList.toggle('_hidden');
   }
 
-  _openItem(linkItem) {
+  // Project selection
+  selectProject(project) {
     this.wrapper.classList.add('_itemOpen');
+    this.unselectedProject();
+    this.selectedProject = project;
+    this.selectedProject.classList.add('_open');
+  }
 
-    for (let i = 0; i < this.items.length; i++) {
-      this.items[i].parentNode.classList.remove('_open');
-    }
-    linkItem.classList.add('_open');
+  unselectedProject() {
+    if (this.selectedProject) this.selectedProject.classList.remove('_open');
+  }
+
+  closeSelection() {
+    this.wrapper.classList.remove('_itemOpen');
+    this.unselectedProject();
+    this.selectedProject = false;
   }
 
   /**
