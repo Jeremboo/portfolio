@@ -1,10 +1,13 @@
+import '@babel/polyfill';
+
 import { TimelineLite } from 'gsap';
 import domready from 'domready';
 
 import header from './components/Header';
 import content from './components/Content';
+import webgl from './components/Webgl';
 
-import { hasTouch } from './util/';
+import hasTouch from './util/hasTouch';
 
 class App {
   /**
@@ -17,7 +20,12 @@ class App {
     if (!hasTouch()) document.body.classList.add('no-touch');
 
     // Show the website
-    this.showIntroduction();
+    this.showIntroduction(() => {
+      // TEMP
+      webgl.init().then(() => {
+        webgl.start();
+      });
+    });
   }
 
   /**

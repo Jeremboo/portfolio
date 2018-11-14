@@ -25,9 +25,13 @@
   "license": "ISC",
   "repository": "https://github.com/Jeremboo/folio",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "dat.gui": "^0.7.3",
     "domready": "^1.0.8",
     "gsap": "^1.19.1",
-    "howler": "^2.0.4"
+    "howler": "^2.0.4",
+    "stats-js": "^1.0.0-alpha1",
+    "three": "^0.98.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
