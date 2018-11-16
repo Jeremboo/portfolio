@@ -1,4 +1,29 @@
 
 .Footer {
+  position: absolute;
+  top: $bodyPaddingTop;
+  right: $bodyPaddingLeft;
+  height: 8rem;
+  display: flex;
+  align-items: center;
 
+  //HACK
+  .Link {
+    height: 23px;
+  }
+
+  // Toggled
+  .Link-wrapper {
+    .Footer-projects {
+      display: none;
+    }
+  }
+  .Link-wrapper.toggled {
+    .Footer-projects {
+      display: block;
+    }
+    .Footer-about {
+      display: none;
+    }
+  }
 }

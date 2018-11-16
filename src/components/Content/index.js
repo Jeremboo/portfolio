@@ -15,7 +15,7 @@ class Content {
     this.toggleContent = this.toggleContent.bind(this);
 
     // Compute animtations
-    this.toggleAnim = this.toggle();
+    this.tlToggle = this.toggle();
 
     // Active toggling
     footer.onClick(this.toggleContent);
@@ -28,12 +28,13 @@ class Content {
    */
   toggleContent() {
     this.toggled = !this.toggled;
+    footer.toggle(this.toggled);
     if (this.toggled) {
       projects.closeSelection();
       details.hideCurrentDetail();
-      this.toggleAnim.play();
+      this.tlToggle.play();
     } else {
-      this.toggleAnim.reverse();
+      this.tlToggle.reverse();
     }
   }
 

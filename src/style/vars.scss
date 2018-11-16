@@ -12,6 +12,9 @@ $images: '#{$ASSET_PATH}images/';
 $font-size: 1em;
 $margin: 16px;
 
+$bodyPaddingLeft: $margin * 9;
+$bodyPaddingTop: $margin * 6;
+
 // Z-INDEX
 $webgl-zi: -1;
 

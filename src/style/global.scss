@@ -24,7 +24,7 @@
 body {
   display: flex;
   flex-direction: column;
-  padding: $margin * 6 $margin * 9;
+  padding: $bodyPaddingTop $bodyPaddingLeft;
   font-size: 1.2rem;
   letter-spacing: 2.5px;
   opacity: 0;
