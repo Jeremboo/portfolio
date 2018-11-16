@@ -1,16 +1,16 @@
 
-import Engine from '../../webgl/engine';
+import WebglEngine from '../../webgl/engine';
 
 import loop from '../../util/loop';
 
 
 // The Engine class extended to bind dom and external events with the graphic engine.
-class Webgl extends Engine {
+class Engine extends WebglEngine {
   constructor() {
     super();
+    // Canvas
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-
     this.wrapper = document.getElementById('webgl');
     this.canvas = this.wrapper.querySelector('canvas');
 
@@ -26,7 +26,7 @@ class Webgl extends Engine {
     await super.init(this.canvas, this.width, this.height);
 
     // Listeners
-    window.addEventListener('handleResize', this.handleResize);
+    window.addEventListener('resize', this.handleResize);
     window.addEventListener('orientationchange', this.handleResize);
     this.handleResize();
 
@@ -64,4 +64,4 @@ class Webgl extends Engine {
   }
 }
 
-export default new Webgl();
+export default new Engine();

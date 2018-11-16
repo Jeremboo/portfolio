@@ -22,12 +22,19 @@ const ASSET_PACKS = {
     //   url: require('~assets/img/textures/combined_a.png'),
     // },
   ],
+  test: [
+    {
+      name: 'test',
+      type: ASSET_TYPES.TEX,
+      url: '../../../assets/images/previews/test.png',
+    }
+  ]
 };
 
 // TODO add gifT loader
 class AssetController {
   constructor() {
-    this.assets = [];
+    this.assets = {};
     this._loaders = {
       // [ASSET_TYPES.OBJ]: new ObjectLoader(),
       // [ASSET_TYPES.JSON]: new JSONLoader(),
@@ -64,6 +71,15 @@ class AssetController {
    * UTILS
    * ********************
    */
+
+  get(name) {
+    const asset = this.assets[name];
+    if (asset === undefined) {
+      console.log.error(`ERROR AssetController.get(): The asset ${name} is not loaded.`);
+      return false;
+    }
+    return asset;
+  }
 
   /**
    * Delete an asset to free the memory
@@ -120,7 +136,7 @@ class AssetController {
    * @return {Promise}
    */
   async _loadPack(assetList, onProgress) {
-    let i
+    let i;
     const nbrOfAssetsToLoad = assetList.length;
     const persentSolvedPerAssets = 100 / nbrOfAssetsToLoad;
 
@@ -133,7 +149,7 @@ class AssetController {
         const progress = persentSolvedPerAssets * (loaded / total);
         onProgress(`${name}...`, progress - loadingProgress);
         loadingProgress = progress;
-      })
+      });
 
       onProgress(`${name} loaded`, persentSolvedPerAssets * (i + 1));
     }

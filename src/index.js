@@ -5,7 +5,7 @@ import domready from 'domready';
 
 import header from './components/Header';
 import content from './components/Content';
-import webgl from './components/Webgl';
+import engine from './components/Engine';
 
 import hasTouch from './util/hasTouch';
 
@@ -15,16 +15,21 @@ class App {
    * * INIT
    * * *******************
    */
-  static init() {
+  static async init() {
     // Check the touch support
     if (!hasTouch()) document.body.classList.add('no-touch');
 
-    // Show the website
+    // Init webgl
+    try {
+      await engine.init();
+      engine.start();
+    } catch (e) {
+      console.error(e);
+      // TODO show an error message
+    }
+
     this.showIntroduction(() => {
-      // TEMP
-      webgl.init().then(() => {
-        webgl.start();
-      });
+      // Anim end
     });
   }
 

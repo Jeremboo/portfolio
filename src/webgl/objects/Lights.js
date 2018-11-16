@@ -3,7 +3,7 @@ import {
 } from 'three';
 
 export default class Lights extends Object3D {
-  constructor () {
+  constructor (top, left) {
     super();
 
     // INIT LIGHTS
@@ -11,10 +11,10 @@ export default class Lights extends Object3D {
     this.add(this.ambiantLight);
 
     this.directionalLight = new DirectionalLight(0xffffff, 0.2);
-    this.directionalLight.position.set(-2, 1, 2);
+    this.directionalLight.position.set(left, top, 2);
     this.directionalLight.castShadow = true;
-    this.directionalLight.shadow.mapSize.width = 2048;
-    this.directionalLight.shadow.mapSize.height = 2048;
+    this.directionalLight.shadow.mapSize.width = 1024;
+    this.directionalLight.shadow.mapSize.height = 1024;
     this.directionalLight.shadow.camera.near = 0.5;
     this.directionalLight.shadow.camera.far = 50;
     this.add(this.directionalLight);

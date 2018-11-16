@@ -1,6 +1,7 @@
 import { TweenMax } from 'gsap';
 
 import details from '../Details';
+import engine from '../Engine';
 
 import { fadeInFromVars, fadeInToVars, fadeOutToVarsClassic } from '../../props';
 
@@ -50,6 +51,9 @@ class Projects {
     // Open project
     const projectId = this.selectedProject.getAttribute('data-id');
     details.showDetail(projectId);
+
+    // Show cubes
+    engine.showProject(projectId);
   }
 
   unselectedProject() {
@@ -60,6 +64,9 @@ class Projects {
     this.wrapper.classList.remove('_itemOpen');
     this.unselectedProject();
     this.selectedProject = false;
+
+    // Hide cubes
+    engine.hideProject();
   }
 
   /**

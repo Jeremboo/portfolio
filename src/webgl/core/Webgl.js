@@ -1,9 +1,8 @@
 import {
-  Scene, PerspectiveCamera, OrthographicCamera, WebGLRenderer, PCFSoftShadowMap
+  Scene, OrthographicCamera, WebGLRenderer, PCFSoftShadowMap,
 } from 'three';
 
 import loop from '../../util/loop';
-import radian from '../../util/radian';
 
 export default class Webgl {
   constructor (canvas, w, h) {
@@ -16,11 +15,13 @@ export default class Webgl {
     this.scene = new Scene();
 
     // this.camera = new PerspectiveCamera(50, w / h, 1, 1000);
+    // this._visibleHeightWithoutDist = 2 * Math.tan(radian(this.camera.fov) / 2); // 2 * Math.tan(this.vFOV / 2)
     this.camera = new OrthographicCamera(-5 * (w / h), 5 * (w / h), 5, -5, 1, 1000);
     this.camera.position.set(0, 0, 10);
+    this.cameraWidth = this.camera.right * 2;
+    this.cameraHeight = this.camera.top * 2;
 
     this.currentCamera = this.camera;
-    this._visibleHeightWithoutDist = 2 * Math.tan(radian(this.camera.fov) / 2); // 2 * Math.tan(this.vFOV / 2)
 
     // renderer
     this.renderer = new WebGLRenderer({
@@ -47,7 +48,16 @@ export default class Webgl {
   resize (w, h) {
     this.width = w;
     this.height = h;
-    this.currentCamera.aspect = this.width / this.height;
+
+    // Perspective camera
+    // this.currentCamera.aspect = this.width / this.height;
+    // this.currentCamera.updateProjectionMatrix();
+
+    // Ortho camera
+    this.currentCamera.left = -5 * (w / h);
+		this.currentCamera.right = 5 * (w / h);
+		this.currentCamera.top = 5;
+		this.currentCamera.bottom = -5;
     this.currentCamera.updateProjectionMatrix();
 
     this.renderer.setSize(this.width, this.height);
