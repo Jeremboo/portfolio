@@ -13,7 +13,7 @@ const UP    = 'top';
 const DOWN  = 'bottom';
 
 export default class CubeWave extends Object3D {
-  constructor(x, y, texture, { scale = 3, forbidenFaces = [DOWN, RIGHT] } = {}) {
+  constructor(x, y, texture, { scale = 3, forbidenFaces = [] } = {}) {
     super();
 
     this.i = 0;
@@ -45,10 +45,18 @@ export default class CubeWave extends Object3D {
     this.add(cube);
     this.cubes.push(cube);
 
-    // Compute the new sizes
-    const newScale = scale * SCALE_REDUCER;
-    const border = (scale * 0.5) - (newScale * 0.5);
-    const pos = (scale * 0.5) + (newScale * 0.5) + MARGIN;
+    let newScale = scale;
+    let border = 0;
+    let pos = 0;
+
+    // Compute new sizes depending of the current scale
+    const reduceScale = (reducer = SCALE_REDUCER) => {
+      newScale *= SCALE_REDUCER;
+      border = (scale * 0.5) - (newScale * 0.5);
+      pos = (scale * 0.5) + (newScale * 0.5) + MARGIN;
+    };
+
+    reduceScale();
 
     if (newScale > 0.1) {
       // LEFT
@@ -57,16 +65,19 @@ export default class CubeWave extends Object3D {
           ? this._recurciveCubeCreation(x - pos, y + border, newScale, [...forbidenFaces, RIGHT]) // Left - Up
           : this._recurciveCubeCreation(x - pos, y - border, newScale, [...forbidenFaces, RIGHT]) // Left - Down
         ;
+        reduceScale(0.8);
       }
       // UP
       if (Math.random() > RECURCIVE_RANDOM && forbidenFaces.indexOf(UP) === -1) {
         (Math.random() > 0.5)
-        ? this._recurciveCubeCreation(x - border, y + pos, newScale, [...forbidenFaces, DOWN]) // Up - Left
-        : this._recurciveCubeCreation(x + border, y + pos, newScale, [...forbidenFaces, DOWN]) // Up - Right
+          ? this._recurciveCubeCreation(x - border, y + pos, newScale, [...forbidenFaces, DOWN]) // Up - Left
+          : this._recurciveCubeCreation(x + border, y + pos, newScale, [...forbidenFaces, DOWN]) // Up - Right
         ;
+        reduceScale(0.8);
       }
       // RIGTH
       if (Math.random() > RECURCIVE_RANDOM && forbidenFaces.indexOf(RIGHT) === -1) {
+        reduceScale(0.9);
         (Math.random() > 0.5)
           ? this._recurciveCubeCreation(x + pos, y + border, newScale, [...forbidenFaces, LEFT]) // Right - Up
           : this._recurciveCubeCreation(x + pos, y - border, newScale, [...forbidenFaces, LEFT]) // Right - Down
@@ -74,6 +85,7 @@ export default class CubeWave extends Object3D {
       }
       // DOWN
       if (Math.random() > RECURCIVE_RANDOM && forbidenFaces.indexOf(DOWN) === -1) {
+        reduceScale(0.9);
         (Math.random() > 0.5)
           ? this._recurciveCubeCreation(x - border, y - pos, newScale, [...forbidenFaces, UP]) // Down - Left
           : this._recurciveCubeCreation(x + border, y - pos, newScale, [...forbidenFaces, UP]) // Down - Right
