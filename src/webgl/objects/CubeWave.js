@@ -3,9 +3,11 @@ import { TimelineLite } from 'gsap';
 
 import FloatingCube from './Cube';
 
-const MARGIN = 0.15;
-const RECURCIVE_RANDOM = 0.3;
-const SCALE_REDUCER = 0.35;
+import {
+  MARGIN,
+  RECURCIVE_RANDOM,
+  SCALE_REDUCER,
+} from '../../props';
 
 const LEFT  = 'left';
 const RIGHT = 'right';
@@ -13,7 +15,7 @@ const UP    = 'top';
 const DOWN  = 'bottom';
 
 export default class CubeWave extends Object3D {
-  constructor(x, y, texture, { scale = 3, forbidenFaces = [] } = {}) {
+  constructor(x, y, texture, scale) {
     super();
 
     this.i = 0;
@@ -22,7 +24,7 @@ export default class CubeWave extends Object3D {
     this.update = this.update.bind(this);
 
     // Create all cubes
-    this._recurciveCubeCreation(x, y, scale, forbidenFaces);
+    this._recurciveCubeCreation(x, y, scale, []);
 
     // Set the texture to the bigest cube
     this.cubes[0].setTexture(texture);
@@ -41,7 +43,7 @@ export default class CubeWave extends Object3D {
 
   _recurciveCubeCreation(x, y, scale, forbidenFaces) {
     // Create a new cube
-    const cube = new FloatingCube(x, y, { scale, force: 0.003 });
+    const cube = new FloatingCube(x, y, scale);
     this.add(cube);
     this.cubes.push(cube);
 

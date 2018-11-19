@@ -1,38 +1,52 @@
+import {
+  Raycaster
+} from 'three';
+
 import Webgl from './core/Webgl';
+import Physic from './core/Physic';
 import assetsController from './core/assetController';
 
 import CubeWave from './objects/CubeWave';
 import Lights from './objects/Lights';
 import Plane from './objects/Plane';
 
+import { HAS_TOUCH, CUBE_SCALE_MAX } from '../props';
+
+// INTERACTION
+const EMPTY_ARRAY = [];
+
 export default class Engine {
   constructor () {
     this.webgl = false;
+    this.physic = false;
+
     this.helper = false;
-    this.cameraManager = false;
 
     // Objects
     this.plane = false;
     this.lights = false;
+    this.mouseRaycaster = new Raycaster();
+    this.currentCubeWave = false;
 
     // utils
-    this.currentCubeWave = false;
-    this.cubeWavePosition = {
-      x: 0,
-      y: 0,
-    };
+    this.cubeWavePosition = { x: 0, y: 0 };
 
     this.resize = this.resize.bind(this);
     this.showProject = this.showProject.bind(this);
     this.hideProject = this.hideProject.bind(this);
+    this.handleMoveEvent = this.handleMoveEvent.bind(this);
+    this.handleUpEvent = this.handleUpEvent.bind(this);
+    this.handleDownEvent = this.handleDownEvent.bind(this);
   }
 
   resize (w, h) {
     if (this.webgl) {
       this.webgl.resize(w, h);
-
       // Update the plane
       this.plane.resize(this.webgl.cameraWidth, this.webgl.cameraHeight);
+
+      // Update physic
+      this.physic.resize(this.webgl.cameraWidth * 0.5, this.webgl.cameraHeight * 0.5);
 
       // Update the cube position
       // padding: 96px 144px;
@@ -60,6 +74,9 @@ export default class Engine {
     // Init the scene, set initial values
     this.initScene();
     // ! FREEEZE ZONE END
+
+    // Add interation
+    this.initEventHandlers();
   }
 
   /**
@@ -75,6 +92,12 @@ export default class Engine {
         if (process.env.NODE_ENV !== 'production') {
           this.helper = require('./core/helper').default;
         }
+
+        // Init physic
+        this.physic = new Physic(
+          this.webgl.cameraWiidth * 0.5,
+          this.webgl.cameraHeight * 0.5
+        );
 
         resolve();
       } catch (e) {
@@ -96,7 +119,7 @@ export default class Engine {
    * - move camera
    * - ...
    */
-  initScene (params) {
+  initScene () {
     // ##########################
     // CONTROLLERS
 
@@ -116,10 +139,6 @@ export default class Engine {
     );
     this.webgl.add(this.plane);
 
-    // this.box = new Cube(0, 0);
-    // this.webgl.add(this.box);
-
-
     // ##############
     // HELPERS
     if (process.env.NODE_ENV !== 'production') {
@@ -133,6 +152,12 @@ export default class Engine {
     this.webgl.computeMeshes([]);
   }
 
+  initEventHandlers() {
+    window.addEventListener(HAS_TOUCH ? 'touchmove' : 'mousemove', this.handleMoveEvent);
+    window.addEventListener(HAS_TOUCH ? 'touchstart' : 'mousedown', this.handleDownEvent);
+    window.addEventListener(HAS_TOUCH ? 'touchend' : 'mouseup', this.handleUpEvent);
+  }
+
   /**
    * * *******************
    * * START
@@ -141,10 +166,41 @@ export default class Engine {
 
   start() {
     this.webgl.start();
+    this.physic.start();
   }
 
   stop() {
     this.webgl.stop();
+    this.physic.stop();
+  }
+
+  /**
+   * * *******************
+   * * INTERACTIONS
+   * * *******************
+   */
+
+  handleDownEvent() {
+    this.physic.handleDownEvent();
+  }
+
+  handleUpEvent() {
+    this.physic.handleUpEvent();
+  }
+
+  handleMoveEvent(e) {
+    const x = e.x || e.clientX || (e.touches && e.touches[0].clientX);
+    const y = e.y || e.clientY || (e.touches && e.touches[0].clientY);
+
+    // Check the intersections with the mouse
+    // TODO make the intersect with p2.js
+    const normalizedPosition = this.webgl.getNormalizedPosFromScreen(x, y);
+    this.mouseRaycaster.setFromCamera(normalizedPosition, this.webgl.camera);
+    const intersects = this.mouseRaycaster.intersectObjects(this.currentCubeWave.children || EMPTY_ARRAY);
+
+    // Handle interaction
+    this.physic.updateCurrentIntersectCube(intersects[0]);
+    this.physic.handleMoveEvent(x, y);
   }
 
   /**
@@ -166,16 +222,12 @@ export default class Engine {
 
     // Show the cubeWave
     // TODO check if the promise take more than 200ms
-    const scale = 4;
-    const newCubeWave = new CubeWave(
-      this.cubeWavePosition.x - (scale * 0.5),
-      this.cubeWavePosition.y + (scale * 0.5),
-      assetsController.get(projectId),
-      { scale }
+
+    this.currentCubeWave = this._addCubeWave(
+      this.cubeWavePosition.x,
+      this.cubeWavePosition.y,
+      assetsController.get(projectId)
     );
-    this.webgl.add(newCubeWave);
-    newCubeWave.show();
-    this.currentCubeWave = newCubeWave;
     // TODO hide loader
   }
 
@@ -183,13 +235,33 @@ export default class Engine {
    * Hide current cube wave
    */
   hideProject() {
-    if (this.currentCubeWave) this._hideCubeWave(this.currentCubeWave);
+    if (this.currentCubeWave) this._removeCubeWave(this.currentCubeWave);
+  }
+
+  /**
+   * * *******************
+   * * ADD / REMOVE
+   * * *******************
+   */
+
+  _addCubeWave(x, y, asset) {
+    const newCubeWave = new CubeWave(
+      x - (CUBE_SCALE_MAX * 0.5),
+      y + (CUBE_SCALE_MAX * 0.5),
+      asset,
+      CUBE_SCALE_MAX,
+    );
+    this.webgl.add(newCubeWave);
+    this.physic.addCubes(newCubeWave.children);
+    newCubeWave.show();
+    return newCubeWave;
   }
 
   /**
    * Hide and remove a grouped cubes on the scene
    */
-  _hideCubeWave(gc) {
+  _removeCubeWave(gc) {
+    this.physic.removeCubes(gc.children);
     gc.hide();
     setTimeout(() => {
       this.webgl.remove(gc);

@@ -7,7 +7,8 @@ import header from './components/Header';
 import content from './components/Content';
 import engine from './components/Engine';
 
-import hasTouch from './util/hasTouch';
+import { HAS_TOUCH } from './props';
+
 
 class App {
   /**
@@ -17,7 +18,7 @@ class App {
    */
   static async init() {
     // Check the touch support
-    if (!hasTouch()) document.body.classList.add('no-touch');
+    if (!HAS_TOUCH) document.body.classList.add('no-touch');
 
     // Init webgl
     try {

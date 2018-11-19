@@ -21,8 +21,6 @@ export default class Webgl {
     this.cameraWidth = this.camera.right * 2;
     this.cameraHeight = this.camera.top * 2;
 
-    this.currentCamera = this.camera;
-
     // renderer
     this.renderer = new WebGLRenderer({
       antialias: true,
@@ -50,21 +48,21 @@ export default class Webgl {
     this.height = h;
 
     // Perspective camera
-    // this.currentCamera.aspect = this.width / this.height;
-    // this.currentCamera.updateProjectionMatrix();
+    // this.camera.aspect = this.width / this.height;
+    // this.camera.updateProjectionMatrix();
 
     // Ortho camera
-    this.currentCamera.left = -5 * (w / h);
-		this.currentCamera.right = 5 * (w / h);
-		this.currentCamera.top = 5;
-		this.currentCamera.bottom = -5;
-    this.currentCamera.updateProjectionMatrix();
+    this.camera.left = -5 * (w / h);
+    this.camera.right = 5 * (w / h);
+    this.camera.updateProjectionMatrix();
+    this.cameraWidth = this.camera.right * 2;
+    this.cameraHeight = this.camera.top * 2;
 
     this.renderer.setSize(this.width, this.height);
   }
 
   _update () {
-    this.renderer.render(this.scene, this.currentCamera);
+    this.renderer.render(this.scene, this.camera);
   }
 
   /**
@@ -113,15 +111,15 @@ export default class Webgl {
    * * UTILS
    * * *******************
    */
-  changeCamera (camera) {
-    this.currentCamera = camera;
-    this.resize(this.width, this.height);
-  }
 
-  getCanvasMeterSize (dist) {
-    const height = this._visibleHeightWithoutDist * dist;
-    const width = height * this.camera.aspect;
-    return { width, height };
+  /**
+   * Get the normalized pixel from webgl screen.
+   */
+  getNormalizedPosFromScreen(x, y) {
+    return {
+      x: ((x / this.width) * 2) - 1,
+      y: -((y / this.height) * 2) + 1,
+    };
   }
 
   // Set an array of Meshes in the scene to render them a first time.
