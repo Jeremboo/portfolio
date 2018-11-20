@@ -10,9 +10,13 @@ import radian from '../../util/radian';
 import {
   FLOATING_ATTRACTION, FLOATING_VELOCITY,
   ROTATION_ATTRACTION, ROTATION_VELOCITY,
-  INITIAL_POSITION_ATTRACTION,
+  INITIAL_POSITION_ATTRACTION, INITIAL_ROTATION_ATTRACTION,
   FRICTION, MASS,
+  FORCE_ROTATION_VELOCITY, FORCE_ROTATION_ATTRACTION,
+  FLOATING_LINE,
 } from '../../props';
+
+const UV_CENTER = [0, 0];
 
 /**
  * * *******************
@@ -58,6 +62,7 @@ export default class Cube extends Mesh {
     this.rotationForce = new Vector2();
 
     // Physic
+    this.currentImpluse = [0, 0];
     this.body = new Body({
       mass: MASS,
       position: [this.position.x, this.position.y],
@@ -72,6 +77,9 @@ export default class Cube extends Mesh {
   }
 
   update() {
+    // Targeted Rotation
+    this.targetedRotation.multiplyScalar(FORCE_ROTATION_ATTRACTION);
+
     // Update Forces
     // - floating force
     this.floatingForce = (this.floatingForce - ((this.position.z - this.targetedFloatingPosition) * FLOATING_ATTRACTION)) * FLOATING_VELOCITY;
@@ -86,9 +94,16 @@ export default class Cube extends Mesh {
     // http://schteppe.github.io/p2.js/docs/classes/Body.html#method_applyDamping
     this.body.applyDamping(FRICTION);
     // Update angle close to zero
-    this.body.angle -= this.body.angle * INITIAL_POSITION_ATTRACTION;
-    this.body.position[0] -= (this.body.position[0] - this.initialPosition.x) * INITIAL_POSITION_ATTRACTION;
-    this.body.position[1] -= (this.body.position[1] - this.initialPosition.y) * INITIAL_POSITION_ATTRACTION;
+    this.body.angle -= this.body.angle * INITIAL_ROTATION_ATTRACTION;
+
+    // Position attraction
+    // V1 ------------------------------------------------------------
+    // this.body.position[0] -= (this.body.position[0] - this.initialPosition.x) * INITIAL_POSITION_ATTRACTION;
+    // this.body.position[1] -= (this.body.position[1] - this.initialPosition.y) * INITIAL_POSITION_ATTRACTION;
+    // V2 ------------------------------------------------------------
+    this.currentImpluse[0] = -(this.body.position[0] - this.initialPosition.x) * INITIAL_POSITION_ATTRACTION;
+    this.currentImpluse[1] = -(this.body.position[1] - this.initialPosition.y) * INITIAL_POSITION_ATTRACTION;
+    this.applyImpulse(this.currentImpluse, UV_CENTER);
 
     // * ***********
     // Update position and rotation
@@ -112,14 +127,14 @@ export default class Cube extends Mesh {
    * @param {Array[2]} uv
    */
   applyImpulse(impulseVector, uv) {
+    // Rotation depending to the force
+    this.targetedRotation.x = -impulseVector[1] * FORCE_ROTATION_VELOCITY;
+    this.targetedRotation.y = impulseVector[0] * FORCE_ROTATION_VELOCITY;
+
+    uv[0] *= this._scale;
+    uv[1] *= this._scale;
     // TODO do not add impulse because it accumulate velocity.instead of just move a little more
-    this.body.applyImpulse(
-      impulseVector,
-      [
-        uv[0] * this._scale,
-        uv[1] * this._scale,
-      ],
-    );
+    this.body.applyImpulse(impulseVector, uv);
   }
 
   /**
@@ -128,7 +143,7 @@ export default class Cube extends Mesh {
    * * *******************
    */
   show() {
-    this.targetedFloatingPosition = -(this._scale * 0.425);
+    this.targetedFloatingPosition = -(this._scale * FLOATING_LINE);
     this.targetedRotation.set(0, 0);
   }
 
