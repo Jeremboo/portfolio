@@ -1,5 +1,5 @@
 import {
-  PointLightHelper
+  PointLightHelper, DirectionalLightHelper
 } from 'three';
 
 import { GUI } from 'dat.gui';
@@ -42,9 +42,14 @@ class Helper extends GUI {
    * * *******************
    */
 
-  toggle() {
-    if (this.hidden) this.show();
-    else this.hide();
+  toggle(wrapper) {
+    if (this.hidden) {
+      this.show();
+      wrapper.style.zIndex = 1;
+    } else {
+      this.hide();
+      wrapper.style.zIndex = -1;
+    }
   }
 
   show () {
@@ -85,6 +90,10 @@ class Helper extends GUI {
 
   addPointLightHelper (light) {
     return new PointLightHelper(light);
+  }
+
+  addDirectionalLightHelper (light) {
+    return new DirectionalLightHelper(light, 1, 0x000000);
   }
 
   /**

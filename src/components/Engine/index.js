@@ -36,7 +36,7 @@ class Engine extends WebglEngine {
       this.wrapper.appendChild(this.helper.stats.domElement);
 
       window.addEventListener('keydown', e => {
-        if (e.keyCode === 192) this.helper.toggle();
+        if (e.keyCode === 192) this.helper.toggle(this.wrapper);
       });
     }
   }

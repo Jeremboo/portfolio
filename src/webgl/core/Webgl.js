@@ -1,5 +1,6 @@
 import {
-  Scene, OrthographicCamera, WebGLRenderer, PCFSoftShadowMap,
+  Scene, OrthographicCamera, WebGLRenderer,
+  // PCFSoftShadowMap, BasicShadowMap
 } from 'three';
 
 import loop from '../../util/loop';
@@ -32,7 +33,7 @@ export default class Webgl {
     // this.renderer.toneMappingExposure = 2.5;
     // this.renderer.toneMappingWhitePoint = 1.5;
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = PCFSoftShadowMap; // default THREE.PCFShadowMap
+    // this.renderer.shadowMap.type = BasicShadowMap; // default THREE.PCFShadowMap
 
     // Bind functions
     this.start = this.start.bind(this);

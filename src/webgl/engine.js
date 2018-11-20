@@ -128,8 +128,8 @@ export default class Engine {
 
     // Add lights
     this.lights = new Lights(
-      this.webgl.camera.top * 0.5,
-      this.webgl.camera.left * 0.5
+      this.webgl.camera.top,
+      this.webgl.camera.left,
     );
     this.webgl.add(this.lights);
 
@@ -144,6 +144,14 @@ export default class Engine {
     if (process.env.NODE_ENV !== 'production') {
       // Helper objects (light debuf or others)
       // GUI
+      // this.webgl.add(this.helper.addDirectionalLightHelper(this.lights.directionalLight));
+      // this.helper.addVector3(this.lights.directionalLight.position, { range: 15, name: 'dirlight' });
+      // this.helper.add(this.lights.directionalLight.shadow.camera, 'left', -10, 10).onChange(() => {
+      //   this.lights.directionalLight.shadow.camera.updateProjectionMatrix();
+      // });
+      // this.helper.add(this.lights.directionalLight.shadow.camera, 'right', -10, 10).onChange(() => {
+      //   this.lights.directionalLight.shadow.camera.updateProjectionMatrix();
+      // });
     }
 
     // ##############
@@ -223,11 +231,14 @@ export default class Engine {
     // Show the cubeWave
     // TODO check if the promise take more than 200ms
 
-    this.currentCubeWave = this._addCubeWave(
-      this.cubeWavePosition.x,
-      this.cubeWavePosition.y,
-      assetsController.get(projectId)
-    );
+    setTimeout(() => {
+      this.currentCubeWave = this._addCubeWave(
+        this.cubeWavePosition.x,
+        this.cubeWavePosition.y,
+        assetsController.get(projectId)
+      );
+    }, 300);
+
     // TODO hide loader
   }
 
