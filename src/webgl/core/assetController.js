@@ -26,7 +26,7 @@ const ASSET_PACKS = {
     {
       name: 'test',
       type: ASSET_TYPES.TEX,
-      url: '../../../assets/images/previews/test.png',
+      url: 'assets/images/previews/test.png',
     }
   ]
 };
@@ -113,8 +113,9 @@ class AssetController {
       }
 
       // Load the file and save it.
+      console.log(process.env.BASENAME + url);
       loader.load(
-        url,
+        process.env.BASENAME + url,
         (...data) => {
           this.assets[name] = data[0];
           resolve();

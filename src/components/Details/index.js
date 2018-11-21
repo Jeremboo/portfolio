@@ -52,7 +52,7 @@ class Details {
     if (typeof this.currentTween.length === 'undefined') this.currentTween.kill();
 
     const arrayReversed = this.currentLinesShown.reverse();
-    this.currentTween = TweenMax.staggerTo(arrayReversed, 0.3, { ...fadeOutToVarsClassic }, 0.03);
+    this.currentTween = TweenMax.staggerTo(arrayReversed, 0.3, { ...fadeOutToVarsClassic, y: 32 }, 0.03);
     return this.currentTween;
   }
 }
