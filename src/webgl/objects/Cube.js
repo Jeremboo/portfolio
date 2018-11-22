@@ -8,15 +8,13 @@ import getRandomFloat from '../../util/getRandomFloat.js';
 import radian from '../../util/radian';
 
 import {
-  FLOATING_ATTRACTION, FLOATING_VELOCITY,
-  ROTATION_ATTRACTION, ROTATION_VELOCITY,
-  INITIAL_POSITION_ATTRACTION, INITIAL_ROTATION_ATTRACTION,
-  FRICTION, MASS,
-  FORCE_ROTATION_VELOCITY, FORCE_ROTATION_ATTRACTION,
-  FLOATING_LINE,
-} from '../../props';
+  FLOATING_VELOCITY, FLOATING_FRICTION,
+  PITCHING_VELOCITY, PITCHING_FRICTION,
+  TARGETED_POSITION_ATTRACTION, TARGETED_POSITION_ATTRACTION_ON_DRAG,
+  MOTION_FRICTION, SLANT_FRICTION, ORIENTATION_FRICTION,
 
-const UV_CENTER = [0, 0];
+  UV_REDUCTION, MASS, FLOATING_LINE
+} from '../../props';
 
 /**
  * * *******************
@@ -46,25 +44,29 @@ export default class Cube extends Mesh {
 
     this._scale = scale;
     this.initialPosition = { x, y };
-    this.initialRotation = new Vector2(
-      getRandomFloat(radian(-30), radian(30)),
-      getRandomFloat(radian(-30), radian(30)),
-    );
+    this.initialRotation = {
+      x: getRandomFloat(radian(-30), radian(30)),
+      y: getRandomFloat(radian(-30), radian(30)),
+    };
+    this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
 
     // Init a position and rotation under the floor
-    this.position.set(x, y, -scale * 1.5);
+    this.position.set(this.initialPosition.x, this.initialPosition.y, -scale * 1.5);
     this.rotation.set(this.initialRotation.x, this.initialRotation.y, 0);
 
-    // Create attractors
+    // Create targets values
     this.targetedFloatingPosition = this.position.z;
-    this.targetedRotation = this.initialRotation.clone();
+    this.targetedPosition = { ...this.initialPosition };
+    this.targetedRotation = { ...this.initialRotation };
 
+    // Physic with p2.js
+    this.physicEnabled = false;
     this.floatingForce = 0;
-    this.rotationForce = new Vector2();
+    this.pitchingForce = new Float32Array([0, 0]);
+    this.currentImpluse = new Float32Array([0, 0]);
+    this.UVAttraction = new Float32Array([0, 0]);
+    this.draggingPosition = new Float32Array([0, 0]);
 
-    // Physic
-    this.physicEnabled = false; //  p2 physic
-    this.currentImpluse = [0, 0];
     this.body = new Body({
       mass: MASS,
       position: [this.position.x, this.position.y],
@@ -79,38 +81,46 @@ export default class Cube extends Mesh {
   }
 
   update() {
+    // * *****************
     // Update Forces
     // - floating force
-    this.floatingForce = (this.floatingForce - ((this.position.z - this.targetedFloatingPosition) * FLOATING_ATTRACTION)) * FLOATING_VELOCITY;
+    this.floatingForce = (this.floatingForce - ((this.position.z - this.targetedFloatingPosition) * FLOATING_VELOCITY)) * FLOATING_FRICTION;
     // - rotation force
-    this.rotationForce.x -= ((this.rotation.x - this.targetedRotation.x) * ROTATION_ATTRACTION);
-    this.rotationForce.y -= ((this.rotation.y - this.targetedRotation.y) * ROTATION_ATTRACTION);
-    this.rotationForce.multiplyScalar(ROTATION_VELOCITY);
+    this.pitchingForce[0] = (this.pitchingForce[0] - ((this.rotation.x - this.targetedRotation.x) * PITCHING_VELOCITY)) * PITCHING_FRICTION;
+    this.pitchingForce[1] = (this.pitchingForce[1] - ((this.rotation.y - this.targetedRotation.y) * PITCHING_VELOCITY)) * PITCHING_FRICTION;
 
     // * *****************
     // Update physics
     if (this.physicEnabled) {
-      // Update targeted rotation
-      this.targetedRotation.multiplyScalar(FORCE_ROTATION_ATTRACTION);
-      // Apply friction
-      // http://schteppe.github.io/p2.js/docs/classes/Body.html#method_applyDamping
-      this.body.applyDamping(FRICTION);
-      // Update angle close to zero
-      this.body.angle -= this.body.angle * INITIAL_ROTATION_ATTRACTION;
-
-      // Position attraction
+      // - Body position
       // V1 ------------------------------------------------------------
-      // this.body.position[0] -= (this.body.position[0] - this.initialPosition.x) * INITIAL_POSITION_ATTRACTION;
-      // this.body.position[1] -= (this.body.position[1] - this.initialPosition.y) * INITIAL_POSITION_ATTRACTION;
+      // this.body.position[0] -= (this.body.position[0] - this.initialPosition.x) * this.currentAttractionVelocity;
+      // this.body.position[1] -= (this.body.position[1] - this.initialPosition.y) * this.currentAttractionVelocity;
       // V2 ------------------------------------------------------------
-      this.currentImpluse[0] = -(this.body.position[0] - this.initialPosition.x) * INITIAL_POSITION_ATTRACTION;
-      this.currentImpluse[1] = -(this.body.position[1] - this.initialPosition.y) * INITIAL_POSITION_ATTRACTION;
-      this.body.applyImpulse(this.currentImpluse, UV_CENTER);
+      this.currentImpluse[0] = -(this.body.position[0] - this.targetedPosition.x) * this.currentAttractionVelocity;
+      this.currentImpluse[1] = -(this.body.position[1] - this.targetedPosition.y) * this.currentAttractionVelocity;
+      this.body.applyImpulse(this.currentImpluse, this.UVAttraction);
+      // V3 ------------------------------------------------------------
+      // - positionForce
+      // this.positionForce.x -= ((this.position.x - this.targetedPosition.x) * this.currentAttractionVelocity);
+      // this.positionForce.y -= ((this.position.y - this.targetedPosition.y) * this.currentAttractionVelocity);
+      // this.positionForce.z -= ((this.position.z - this.targetedPosition.z) * this.currentAttractionVelocity);
+      // this.positionForce.multiplyScalar(this.positionForceFriction);
+      // this.currentImpluse[0] = this.positionForce.x;
+      // this.currentImpluse[1] = this.positionForce.y;
+      // this.body.applyImpulse(this.currentImpluse, this.UVAttraction);
 
-      // TODO apply a rotation like line 139-140 depending to the difference between old and new position
-      // Slant the cube depending to the motion orientation
-      this.targetedRotation.x = -(this.body.position[1] - this.position.y);
-      this.targetedRotation.y = (this.body.position[0] - this.position.x);
+      // Apply a frition to the motion via p2.js
+      this.body.applyDamping(MOTION_FRICTION);
+
+      // - TargetedRotation
+      // Slant the cube depending to the motion orientation and  Reduce the targeted rotation angle (friction)
+      this.targetedRotation.x = -(this.body.position[1] - this.position.y) * SLANT_FRICTION;
+      this.targetedRotation.y = (this.body.position[0] - this.position.x) * SLANT_FRICTION;
+
+      // - Body angle Z
+      // Animate the angle close to zero (easing animation)
+      this.body.angle -= this.body.angle * ORIENTATION_FRICTION;
     }
 
     // * ***********
@@ -121,10 +131,43 @@ export default class Cube extends Mesh {
       this.position.z + this.floatingForce,
     );
     this.rotation.set(
-      this.rotation.x + this.rotationForce.x,
-      this.rotation.y + this.rotationForce.y,
+      this.rotation.x + this.pitchingForce[0],
+      this.rotation.y + this.pitchingForce[1],
       this.body.angle,
     );
+  }
+
+  /**
+   * * *******************
+   * * DRAG & DROP
+   * * *******************
+   */
+
+  // Drag
+  setDraggingPosition(uv) {
+    this.draggingPosition[0] = (uv.x - 0.5) * this._scale;
+    this.draggingPosition[1] = (uv.y - 0.5) * this._scale;
+
+    this.UVAttraction[0] = this.draggingPosition[0] * UV_REDUCTION;
+    this.UVAttraction[1] = this.draggingPosition[1] * UV_REDUCTION;
+
+    this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION_ON_DRAG;
+  }
+
+  setAttractionPos(x, y) {
+    this.targetedPosition.x = x - this.draggingPosition[0];
+    this.targetedPosition.y = y - this.draggingPosition[1];
+  }
+
+  // - Drop
+  drop() {
+    this.UVAttraction[0] = 0;
+    this.UVAttraction[1] = 0;
+
+    this.targetedPosition.x = this.initialPosition.x;
+    this.targetedPosition.y = this.initialPosition.y;
+
+    this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
   }
 
   /**
@@ -135,14 +178,13 @@ export default class Cube extends Mesh {
 
   /**
    * Apply an impulsion to the box
-   * @param {Array[2]} impulseVector
-   * @param {Array[2]} uv
+   * @param {Array[2]} impulseArray
+   * @param {Array[2]} uvArray
    */
-  applyImpulse(impulseVector, uv) {
-    uv[0] *= this._scale;
-    uv[1] *= this._scale;
-    // TODO do not add impulse because it accumulate velocity.instead of just move a little more
-    this.body.applyImpulse(impulseVector, uv);
+  applyImpulse(impulseArray, uvArray) {
+    uvArray[0] *= this._scale;
+    uvArray[1] *= this._scale;
+    this.body.applyImpulse(impulseArray, uvArray);
   }
 
   /**
@@ -153,13 +195,15 @@ export default class Cube extends Mesh {
   show() {
     this.physicEnabled = true;
     this.targetedFloatingPosition = -(this._scale * FLOATING_LINE);
-    this.targetedRotation.set(0, 0);
+    this.targetedRotation.x = 0;
+    this.targetedRotation.y = 0;
   }
 
   hide() {
     this.physicEnabled = false;
     this.targetedFloatingPosition = -this._scale * 1.5;
-    this.targetedRotation.copy(this.initialRotation);
+    this.targetedRotation.x = this.initialRotation.x;
+    this.targetedRotation.y = this.initialRotation.y;
   }
 
   /**

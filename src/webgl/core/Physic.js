@@ -5,7 +5,7 @@ import loop from '../../util/loop';
 import radian from '../../util/radian';
 
 import {
-  BOX_OVERFLOWN_FRICTION, BOX_TOUCHED_FRICTION,
+  BOX_OVERFLOWN_FRICTION,
 } from '../../props';
 
 export default class Physic extends World {
@@ -22,9 +22,11 @@ export default class Physic extends World {
 
     // ************
     // * Interactions vars
-    this.touchedCube = false;
+    this.draggedCube = false;
     this.currentIntersectCube = false;
-    this.currentMousePosition = { x: 0, y: 0 };
+    this.currentMousePosition = new Float32Array([0, 0]);
+    this.currentImpulse = new Float32Array([0, 0]);
+    this.currentUV = new Float32Array([0, 0]);
 
     // ************
     // * init stage
@@ -51,11 +53,11 @@ export default class Physic extends World {
   /**
    * Resize the stage limitation
    */
-  resize(alfWidth, h) {
-    this.wallLeft.position[0] = -(alfWidth);
+  resize(alfWidth, alfHeight) {
+    this.wallLeft.position[0] = -alfWidth;
     this.wallRight.position[0] = alfWidth;
-    // this.floor.position[1] = -(h * 0.5);
-    // this.roof.position[1] = h * 0.5;
+    // this.floor.position[1] = -alfHeight;
+    // this.roof.position[1] = alfHeight;
   }
 
 
@@ -106,40 +108,44 @@ export default class Physic extends World {
   updateCurrentIntersectCube(intersectedCube) {
     if (intersectedCube !== undefined) {
       this.currentIntersectCube = intersectedCube;
-      if (!this.touchedCube) document.body.style.cursor = 'grab';
+      if (!this.draggedCube) document.body.style.cursor = 'grab';
     } else {
-      this.touchedCube = false;
       this.currentIntersectCube = false;
-      document.body.style.cursor = 'auto';
+      if (!this.draggedCube) document.body.style.cursor = 'auto';
     }
   }
 
   handleMoveEvent(x, y) {
-    if (this.currentIntersectCube || this.touchedCube) {
-      const friction = (this.touchedCube)
-        ? BOX_TOUCHED_FRICTION
-        : BOX_OVERFLOWN_FRICTION
-      ;
-      this.currentIntersectCube.object.applyImpulse([
-        (x - this.currentMousePosition.x) * friction,
-        (this.currentMousePosition.y - y) * friction,
-      ], [
-        this.currentIntersectCube.uv.x - 0.5,
-        this.currentIntersectCube.uv.y - 0.5,
-      ]);
+    // When the mouse coordinate brush a cube.
+    if (this.currentIntersectCube) {
+      this.currentImpulse[0] = (x - this.currentMousePosition[0]) * BOX_OVERFLOWN_FRICTION;
+      this.currentImpulse[1] = (y - this.currentMousePosition[1]) * BOX_OVERFLOWN_FRICTION;
+      this.currentUV[0] = this.currentIntersectCube.uv.x - 0.5;
+      this.currentUV[1] = this.currentIntersectCube.uv.y - 0.5;
+      this.currentIntersectCube.object.applyImpulse(this.currentImpulse, this.currentUV);
     }
-    this.currentMousePosition = { x, y };
+
+    // When a cube is dragged
+    if (this.draggedCube) {
+      this.draggedCube.setAttractionPos(x, y);
+    }
+
+    // Update the current mouse position for the next frame
+    this.currentMousePosition[0] = x;
+    this.currentMousePosition[1] = y;
   }
 
   handleDownEvent() {
     if (this.currentIntersectCube) {
       document.body.style.cursor = 'grabbing';
-      this.touchedCube = this.currentIntersectCube.object;
+      this.draggedCube = this.currentIntersectCube.object;
+      this.draggedCube.setDraggingPosition(this.currentIntersectCube.uv);
     }
   }
 
   handleUpEvent() {
-    this.touchedCube = false;
+    if (this.draggedCube) this.draggedCube.drop();
+    this.draggedCube = false;
     document.body.style.cursor = (this.currentIntersectCube) ? 'grab' : 'auto';
   }
 }

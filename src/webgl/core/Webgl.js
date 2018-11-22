@@ -21,6 +21,8 @@ export default class Webgl {
     this.camera.position.set(0, 0, 10);
     this.cameraWidth = this.camera.right * 2;
     this.cameraHeight = this.camera.top * 2;
+    this.ratioWidth = this.cameraWidth / w;
+    this.ratioHeight = this.cameraHeight / h;
 
     // renderer
     this.renderer = new WebGLRenderer({
@@ -58,6 +60,8 @@ export default class Webgl {
     this.camera.updateProjectionMatrix();
     this.cameraWidth = this.camera.right * 2;
     this.cameraHeight = this.camera.top * 2;
+    this.ratioWidth = this.cameraWidth / w;
+    this.ratioHeight = this.cameraHeight / h;
 
     this.renderer.setSize(this.width, this.height);
   }

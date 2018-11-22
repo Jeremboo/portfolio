@@ -197,18 +197,22 @@ export default class Engine {
   }
 
   handleMoveEvent(e) {
-    const x = e.x || e.clientX || (e.touches && e.touches[0].clientX);
-    const y = e.y || e.clientY || (e.touches && e.touches[0].clientY);
+    const x = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+    const y = e.clientY || (e.touches && e.touches[0].clientY) || 0;
 
-    // Check the intersections with the mouse
-    // TODO make the intersect with p2.js
+    // Check the intersections between the mouse and a cube
     const normalizedPosition = this.webgl.getNormalizedPosFromScreen(x, y);
     this.mouseRaycaster.setFromCamera(normalizedPosition, this.webgl.camera);
     const intersects = this.mouseRaycaster.intersectObjects(this.currentCubeWave.children || EMPTY_ARRAY);
 
     // Handle interaction
     this.physic.updateCurrentIntersectCube(intersects[0]);
-    this.physic.handleMoveEvent(x, y);
+
+    // transform mouse event to meter position
+    this.physic.handleMoveEvent(
+      (x * this.webgl.ratioWidth) - this.webgl.camera.right,
+      this.webgl.camera.top - (y * this.webgl.ratioHeight),
+    );
   }
 
   /**
