@@ -177,14 +177,14 @@ export default class Cube extends Mesh {
    */
 
   /**
-   * Apply an impulsion to the box
-   * @param {Array[2]} impulseArray
-   * @param {Array[2]} uvArray
+   * Apply an impulsion to the box depending to the scale
+   * @param {Array[2]} impulse
+   * @param {Array[2]} uv
    */
-  applyImpulse(impulseArray, uvArray) {
-    uvArray[0] *= this._scale;
-    uvArray[1] *= this._scale;
-    this.body.applyImpulse(impulseArray, uvArray);
+  applyImpulse(impulse, uv) {
+    uv[0] *= this._scale;
+    uv[1] *= this._scale;
+    this.body.applyImpulse(impulse, uv);
   }
 
   /**

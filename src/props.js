@@ -30,7 +30,7 @@ export const FLOATING_FRICTION = 0.92;
 export const PITCHING_VELOCITY = 0.008;
 export const PITCHING_FRICTION = 0.955;
 // When the cube come to the right place
-export const TARGETED_POSITION_ATTRACTION = 0.5; // 0.3
+export const TARGETED_POSITION_ATTRACTION = 0.3; // 0.5
 export const TARGETED_POSITION_ATTRACTION_ON_DRAG = 1.8;
 // frictions
 export const MOTION_FRICTION = 0.5;
@@ -39,7 +39,7 @@ export const ORIENTATION_FRICTION = 0.05;
 
 // CUBE WAVE
 export const CUBE_SCALE_MAX = 4;
-// TODO add cube scale min
+export const CUBE_SCALE_MIN = 0.2;
 export const MARGIN = 0.15;
 export const RECURCIVE_RANDOM = 0.3;
-export const SCALE_REDUCER = 0.35;
+export const SCALE_REDUCER = 0.4;
