@@ -15,19 +15,52 @@ const ASSET_PACKS = {
     //   url: require('~assets/img/textures/combined_a.png'),
     // },
   ],
-  project1: [
-    // {
-    //   name: 'combined_a_tex',
-    //   type: 'ASSET_TYPES.TEX',
-    //   url: require('~assets/img/textures/combined_a.png'),
-    // },
-  ],
-  test: [
+  projects: [
+    {
+      name: 'design-my-smart',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/design-my-smart.png',
+    },
+    {
+      name: 'o-de-sisley',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/o-de-sisley.png',
+    },
+    {
+      name: 'omniwomen',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/omniwomen.png',
+    },
+    {
+      name: 'ricochet',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/ricochet.png',
+    },
+    {
+      name: 'shooting-star-equalizer',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/shooting-star-equalizer.png',
+    },
+    {
+      name: 'sncf-prevision',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/sncf-prevision.png',
+    },
+    {
+      name: 'sweet-pursuit',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/sweet-pursuit.png',
+    },
+    {
+      name: 'wellnesslab',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/wellnesslab.png',
+    },
     {
       name: 'test',
       type: ASSET_TYPES.TEX,
       url: 'assets/images/previews/test.png',
-    }
+    },
   ]
 };
 
@@ -64,6 +97,18 @@ class AssetController {
    */
   loadPack(packName, onProgress = f => f) {
     return this._loadPack(ASSET_PACKS[packName], onProgress);
+  }
+
+  /**
+   * Load a specific asset into a pack
+   * @param  {String} packName the name of the pack
+   * @param  {String} assetName the name of the asset
+   * @return {Promise} [description]
+   */
+  loadAsset(packName, assetName, onProgress = f => f) {
+    const assetProps = ASSET_PACKS[packName].filter((asset) => asset.name === assetName)[0];
+    console.log(assetProps);
+    return this._loadAsset(assetProps, onProgress);
   }
 
   /**

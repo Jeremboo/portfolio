@@ -222,7 +222,7 @@ export default class Engine {
    */
   async showProject(projectId) {
     // DEBUG
-    projectId = 'test';
+    // projectId = 'test';
 
     // TODO show loader if nothing is on the floor
 
@@ -230,7 +230,7 @@ export default class Engine {
     this.hideProject();
 
     // Load the nessessary asset
-    await assetsController.loadPack(projectId);
+    await assetsController.loadAsset('projects', projectId);
 
     // Show the cubeWave
     // TODO check if the promise take more than 200ms
