@@ -1,6 +1,7 @@
 import { Power3 } from 'gsap';
 
 import _hasTouch from './util/hasTouch';
+import radian from './util/radian';
 
 // GLOBALS
 export const HAS_TOUCH = _hasTouch();
@@ -36,6 +37,9 @@ export const TARGETED_POSITION_ATTRACTION_ON_DRAG = 1.8;
 export const MOTION_FRICTION = 0.5;
 export const SLANT_FRICTION = 0.7;
 export const ORIENTATION_FRICTION = 0.05;
+// Rotation
+export const MIN_ROTATION = radian(5);
+export const MAX_ROTATION = radian(25);
 
 // CUBE WAVE
 export const CUBE_SCALE_MAX = 4;

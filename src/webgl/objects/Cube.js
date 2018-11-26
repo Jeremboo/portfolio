@@ -1,19 +1,18 @@
 import {
-  BoxGeometry, MeshToonMaterial, Mesh, Vector2,
+  BoxGeometry, MeshToonMaterial, Mesh
 } from 'three';
 
 import { Body, Box } from 'p2';
 
 import getRandomFloat from '../../util/getRandomFloat.js';
-import radian from '../../util/radian';
 
 import {
   FLOATING_VELOCITY, FLOATING_FRICTION,
   PITCHING_VELOCITY, PITCHING_FRICTION,
   TARGETED_POSITION_ATTRACTION, TARGETED_POSITION_ATTRACTION_ON_DRAG,
   MOTION_FRICTION, SLANT_FRICTION, ORIENTATION_FRICTION,
-
-  UV_REDUCTION, MASS, FLOATING_LINE
+  UV_REDUCTION, MASS, FLOATING_LINE,
+  MIN_ROTATION, MAX_ROTATION,
 } from '../../props';
 
 /**
@@ -45,8 +44,8 @@ export default class Cube extends Mesh {
     this._scale = scale;
     this.initialPosition = { x, y };
     this.initialRotation = {
-      x: getRandomFloat(radian(-30), radian(30)),
-      y: getRandomFloat(radian(-30), radian(30)),
+      x: getRandomFloat(MIN_ROTATION, MAX_ROTATION) * (Math.random() > 0.5 ? 1 : -1),
+      y: getRandomFloat(MIN_ROTATION, MAX_ROTATION) * (Math.random() > 0.5 ? 1 : -1),
     };
     this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
 
