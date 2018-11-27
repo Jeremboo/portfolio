@@ -73,11 +73,11 @@ const ASSET_PACKS = {
       type: ASSET_TYPES.TEX,
       url: 'assets/images/previews/scribble-2.png',
     },
-    {
-      name: 'scribble-3',
-      type: ASSET_TYPES.TEX,
-      url: 'assets/images/previews/scribble-3.png',
-    },
+    // {
+    //   name: 'scribble-3',
+    //   type: ASSET_TYPES.TEX,
+    //   url: 'assets/images/previews/scribble-3.png',
+    // },
     {
       name: 'scribble-4',
       type: ASSET_TYPES.TEX,
@@ -108,11 +108,11 @@ const ASSET_PACKS = {
       type: ASSET_TYPES.TEX,
       url: 'assets/images/previews/scribble-9.png',
     },
-    {
-      name: 'scribble-10',
-      type: ASSET_TYPES.TEX,
-      url: 'assets/images/previews/scribble-10.png',
-    },
+    // {
+    //   name: 'scribble-10',
+    //   type: ASSET_TYPES.TEX,
+    //   url: 'assets/images/previews/scribble-10.png',
+    // },
   ]
 };
 
@@ -178,7 +178,7 @@ class AssetController {
         await this._loadAsset(ASSET_PACKS.scribbles[i]);
         setTimeout(() => {
           onAssetLoadedCallback(this.get(ASSET_PACKS.scribbles[i].name));
-        }, 250 * i);
+        }, (100 * i) + 450);
       }
     }
   }
@@ -239,7 +239,7 @@ class AssetController {
         process.env.BASENAME + url,
         (...data) => {
           this.assets[name] = data[0];
-          resolve();
+          resolve(data[0]);
         },
         progress,
         () => {

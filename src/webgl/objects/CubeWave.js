@@ -16,7 +16,7 @@ const UP    = 'top';
 const DOWN  = 'bottom';
 
 export default class CubeWave extends Object3D {
-  constructor(x, y, texture, scale) {
+  constructor(x, y, scale) {
     super();
 
     this.i = 0;
@@ -26,9 +26,6 @@ export default class CubeWave extends Object3D {
 
     // Create all cubes
     this._recurciveCubeCreation(x, y, scale, []);
-
-    // Set the texture to the bigest cube
-    this.cubes[0].setTexture(texture);
 
     // Compute the timelines once
     this.tlShow = new TimelineLite({ paused: true });
@@ -92,6 +89,11 @@ export default class CubeWave extends Object3D {
         : this._recurciveCubeCreation(x + border, y - pos, newScale, [...forbidenFaces, UP]) // Down - Right
       ;
     }
+  }
+
+  setTexture(texture) {
+    // Set the texture to the bigest cube
+    this.cubes[0].setTexture(texture);
   }
 
   /**

@@ -117,11 +117,12 @@ export default class Cube extends Mesh {
       // Apply a frition to the motion via p2.js
       this.body.applyDamping(this.motionFriction);
 
+      // * ***********
+      // Straightening
       // - TargetedRotation
       // Slant the cube depending to the motion orientation and  Reduce the targeted rotation angle (friction)
       this.targetedRotation.x = -(this.body.position[1] - this.position.y) * SLANT_FRICTION;
       this.targetedRotation.y = (this.body.position[0] - this.position.x) * SLANT_FRICTION;
-
       // - Body angle Z
       // Animate the angle close to zero (easing animation)
       this.body.angle -= this.body.angle * this.orientationFriction;

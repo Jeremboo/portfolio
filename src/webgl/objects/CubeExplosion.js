@@ -4,15 +4,14 @@ import { TimelineLite } from 'gsap';
 import FloatingCube from './Cube';
 
 import {
-
+  CUBE_SCALE_MAX_EXPLOSION, CUBE_SCALE_MIN_EXPLOSION,
 } from '../../props';
 import getRandomFloat from '../../util/getRandomFloat';
 
 export default class CubeExplosion extends Object3D {
-  constructor(x, y, scale) {
+  constructor(x, y) {
     super();
     this.cubeSource = { x, y };
-    this.scaleMax = scale;
 
     this.i = 0;
     this.isExplosion = true;
@@ -39,9 +38,9 @@ export default class CubeExplosion extends Object3D {
 
   addCube(texture) {
     const cube = new FloatingCube(
-      this.cubeSource.x + getRandomFloat(-2, 2),
-      this.cubeSource.y + getRandomFloat(-2, 2),
-      getRandomFloat(1, this.scaleMax),
+      this.cubeSource.x + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION, CUBE_SCALE_MIN_EXPLOSION),
+      this.cubeSource.y + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION, CUBE_SCALE_MIN_EXPLOSION),
+      getRandomFloat(CUBE_SCALE_MIN_EXPLOSION, CUBE_SCALE_MAX_EXPLOSION),
     );
     cube.setDetached();
     cube.setTexture(texture);
