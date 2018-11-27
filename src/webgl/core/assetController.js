@@ -61,6 +61,58 @@ const ASSET_PACKS = {
       type: ASSET_TYPES.TEX,
       url: 'assets/images/previews/test.png',
     },
+  ],
+  scribbles: [
+    {
+      name: 'scribble-1',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-1.png',
+    },
+    {
+      name: 'scribble-2',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-2.png',
+    },
+    {
+      name: 'scribble-3',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-3.png',
+    },
+    {
+      name: 'scribble-4',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-4.png',
+    },
+    {
+      name: 'scribble-5',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-5.png',
+    },
+    {
+      name: 'scribble-6',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-6.png',
+    },
+    {
+      name: 'scribble-7',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-7.png',
+    },
+    {
+      name: 'scribble-8',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-8.png',
+    },
+    {
+      name: 'scribble-9',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-9.png',
+    },
+    {
+      name: 'scribble-10',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/scribble-10.png',
+    },
   ]
 };
 
@@ -74,6 +126,7 @@ class AssetController {
       [ASSET_TYPES.TEX]: new TextureLoader(),
       [ASSET_TYPES.IMG]: new ImageLoader()
     };
+    this.loadScribbleAndShow = false;
   }
 
   /**
@@ -112,9 +165,32 @@ class AssetController {
   }
 
   /**
-   * ********************
-   * UTILS
-   * ********************
+   * * *******************
+   * * CUSTOM LOADERS
+   */
+
+  async loadScribblePack(onAssetLoadedCallback) {
+    this.loadScribbleAndShow = true;
+
+    // Load scribble asset and call callback avec it was loaded
+    for (let i = 0; i < ASSET_PACKS.scribbles.length; i++) {
+      if (this.loadScribbleAndShow) {
+        await this._loadAsset(ASSET_PACKS.scribbles[i]);
+        setTimeout(() => {
+          onAssetLoadedCallback(this.get(ASSET_PACKS.scribbles[i].name));
+        }, 250 * i);
+      }
+    }
+  }
+
+  stopScribblePackLoading() {
+    this.loadScribbleAndShow = false;
+  }
+
+  /**
+   * * *******************
+   * * UTILS
+   * * *******************
    */
 
   get(name) {

@@ -100,6 +100,14 @@ export default class Physic extends World {
     });
   }
 
+  addCube(cube) {
+    this.addBody(cube.body);
+  }
+
+  removeCube(cube) {
+    this.removeBody(cube.body);
+  }
+
   /**
    * * *******************
    * * INTERACTION
@@ -140,6 +148,7 @@ export default class Physic extends World {
       document.body.style.cursor = 'grabbing';
       this.draggedCube = this.currentIntersectCube.object;
       this.draggedCube.setDraggingPosition(this.currentIntersectCube.uv);
+      this.handleMoveEvent(this.currentIntersectCube.point.x, this.currentIntersectCube.point.y);
     }
   }
 

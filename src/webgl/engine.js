@@ -7,10 +7,11 @@ import Physic from './core/Physic';
 import assetsController from './core/assetController';
 
 import CubeWave from './objects/CubeWave';
+import CubeExplosion from './objects/CubeExplosion';
 import Lights from './objects/Lights';
 import Plane from './objects/Plane';
 
-import { HAS_TOUCH, CUBE_SCALE_MAX } from '../props';
+import { HAS_TOUCH, CUBE_SCALE_MAX, CUBE_SCALE_MAX_EXPLOSION } from '../props';
 
 // INTERACTION
 const EMPTY_ARRAY = [];
@@ -229,19 +230,22 @@ export default class Engine {
     // Hide the current wave if she exist
     this.hideProject();
 
-    // Load the nessessary asset
-    await assetsController.loadAsset('projects', projectId);
-
-    // Show the cubeWave
-    // TODO check if the promise take more than 200ms
-
-    setTimeout(() => {
-      this.currentCubeWave = this._addCubeWave(
-        this.cubeWavePosition.x,
-        this.cubeWavePosition.y,
-        assetsController.get(projectId)
-      );
-    }, 300);
+    if (projectId === 'scribble-lab') {
+      // Load and show a scribble project
+      // TODO load asset for each scribble cube
+      this.currentCubeWave = this.currentCubeWave = this._addCubeExplosion(0, 0);
+    } else {
+      // Load and show a normal project
+      await assetsController.loadAsset('projects', projectId);
+      // TODO check if the promise take more than 200ms
+      setTimeout(() => {
+        this.currentCubeWave = this._addCubeWave(
+          this.cubeWavePosition.x,
+          this.cubeWavePosition.y,
+          assetsController.get(projectId)
+        );
+      }, 300);
+    }
 
     // TODO hide loader
   }
@@ -258,6 +262,7 @@ export default class Engine {
    * * ADD / REMOVE
    * * *******************
    */
+  // TODO done only one function for CubeWave and CubeExplosion
 
   _addCubeWave(x, y, asset) {
     const newCubeWave = new CubeWave(
@@ -272,11 +277,28 @@ export default class Engine {
     return newCubeWave;
   }
 
+  _addCubeExplosion(x, y) {
+    const cubeExplosion = new CubeExplosion(x, y, CUBE_SCALE_MAX_EXPLOSION);
+    this.webgl.add(cubeExplosion);
+
+    assetsController.loadScribblePack((scribbleAsset) => {
+      // Check is the currentCubeWave is still the cubeExplosion
+      if (this.currentCubeWave.isExplosion) {
+        const cube = this.currentCubeWave.addCube(scribbleAsset);
+        this.physic.addCube(cube);
+      } else {
+        assetsController.stopScribblePackLoading();
+      }
+    });
+
+    return cubeExplosion;
+  }
+
   /**
    * Hide and remove a grouped cubes on the scene
    */
   _removeCubeWave(gc) {
-    this.physic.removeCubes(gc.children);
+    this.physic.removeCubes(gc.children); // TODO create separate world for each cubes to let the physic works
     gc.hide();
     setTimeout(() => {
       this.webgl.remove(gc);

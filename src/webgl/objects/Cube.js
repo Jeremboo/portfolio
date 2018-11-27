@@ -13,6 +13,7 @@ import {
   MOTION_FRICTION, SLANT_FRICTION, ORIENTATION_FRICTION,
   UV_REDUCTION, MASS, FLOATING_LINE,
   MIN_ROTATION, MAX_ROTATION,
+  MOTION_FRICTION_DETACHED, TARGETED_POSITION_ATTRACTION_DETACHED, ORIENTATION_FRICTION_DETACHED,
 } from '../../props';
 
 /**
@@ -47,7 +48,11 @@ export default class Cube extends Mesh {
       x: getRandomFloat(MIN_ROTATION, MAX_ROTATION) * (Math.random() > 0.5 ? 1 : -1),
       y: getRandomFloat(MIN_ROTATION, MAX_ROTATION) * (Math.random() > 0.5 ? 1 : -1),
     };
+
+    this.detached = false;
     this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
+    this.motionFriction = MOTION_FRICTION;
+    this.orientationFriction = ORIENTATION_FRICTION;
 
     // Init a position and rotation under the floor
     this.position.set(this.initialPosition.x, this.initialPosition.y, -scale * 1.5);
@@ -110,7 +115,7 @@ export default class Cube extends Mesh {
       // this.body.applyImpulse(this.currentImpluse, this.UVAttraction);
 
       // Apply a frition to the motion via p2.js
-      this.body.applyDamping(MOTION_FRICTION);
+      this.body.applyDamping(this.motionFriction);
 
       // - TargetedRotation
       // Slant the cube depending to the motion orientation and  Reduce the targeted rotation angle (friction)
@@ -119,7 +124,7 @@ export default class Cube extends Mesh {
 
       // - Body angle Z
       // Animate the angle close to zero (easing animation)
-      this.body.angle -= this.body.angle * ORIENTATION_FRICTION;
+      this.body.angle -= this.body.angle * this.orientationFriction;
     }
 
     // * ***********
@@ -151,6 +156,7 @@ export default class Cube extends Mesh {
     this.UVAttraction[1] = this.draggingPosition[1] * UV_REDUCTION;
 
     this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION_ON_DRAG;
+    if (this.detached) this.motionFriction = MOTION_FRICTION;
   }
 
   setAttractionPos(x, y) {
@@ -166,7 +172,26 @@ export default class Cube extends Mesh {
     this.targetedPosition.x = this.initialPosition.x;
     this.targetedPosition.y = this.initialPosition.y;
 
-    this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
+    if (!this.detached) {
+      this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
+    } else {
+      this.motionFriction = MOTION_FRICTION_DETACHED;
+      this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION_DETACHED;
+      this.orientationFriction = ORIENTATION_FRICTION_DETACHED;
+    }
+  }
+
+  /**
+   * * *******************
+   * * DETAHED
+   * * *******************
+   */
+
+  setDetached() {
+    this.detached = true;
+    this.motionFriction = MOTION_FRICTION_DETACHED;
+    this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION_DETACHED;
+    this.orientationFriction = ORIENTATION_FRICTION_DETACHED;
   }
 
   /**
