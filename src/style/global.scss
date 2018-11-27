@@ -30,7 +30,7 @@ body {
   letter-spacing: 2.5px;
   opacity: 0;
 
-  @include mq($until: tablet) {
+  @include mq($until: desktop) {
     padding: $margin * 2 $margin * 2;
   }
 }

@@ -34,7 +34,7 @@ $subtitleSize: 32;
   }
 
   // MOBILE
-  @include mq($until: tablet) {
+  @include mq($until: desktop) {
     // V1 ------------------------------
     margin-left: -5px;
     &-title {

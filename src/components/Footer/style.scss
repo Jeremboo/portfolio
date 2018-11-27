@@ -26,4 +26,14 @@
       display: none;
     }
   }
+
+  @include mq($until: desktop) {
+    top: $margin * 2;
+    right: $margin * 2;
+  }
+
+  @include mq($until: tablet) {
+    top: 139px; // HACK
+    right: $margin * 2;
+  }
 }
