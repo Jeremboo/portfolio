@@ -101,7 +101,9 @@ $subtitleSize: 32;
     & > span+span {
       z-index: 1;
     }
+  }
 
+  @include mq($until: desktop) {
     &._withMask > span::after {
       margin-top: -5px;
     }

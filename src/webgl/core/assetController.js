@@ -160,7 +160,6 @@ class AssetController {
    */
   loadAsset(packName, assetName, onProgress = f => f) {
     const assetProps = ASSET_PACKS[packName].filter((asset) => asset.name === assetName)[0];
-    console.log(assetProps);
     return this._loadAsset(assetProps, onProgress);
   }
 
@@ -234,7 +233,6 @@ class AssetController {
       }
 
       // Load the file and save it.
-      console.log(process.env.BASENAME + url);
       loader.load(
         process.env.BASENAME + url,
         (...data) => {

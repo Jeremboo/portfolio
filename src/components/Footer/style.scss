@@ -1,9 +1,9 @@
 
 .Footer {
   position: absolute;
-  top: $bodyPaddingTop;
-  right: $bodyPaddingLeft;
-  height: 8rem;
+  top: $bodyPaddingTop + 32px;
+  right: $bodyPaddingLeft - 4px;
+  // height: 8rem;
   display: flex;
   align-items: center;
 
@@ -12,28 +12,21 @@
     height: 23px;
   }
 
-  // Toggled
-  .Link-wrapper {
-    .Footer-projects {
-      display: none;
-    }
-  }
-  .Link-wrapper.toggled {
-    .Footer-projects {
-      display: block;
-    }
-    .Footer-about {
-      display: none;
-    }
-  }
-
   @include mq($until: desktop) {
     top: $margin * 2;
     right: $margin * 2;
   }
 
   @include mq($until: tablet) {
-    top: 139px; // HACK
-    right: $margin * 2;
+    top: auto;
+    right: auto;
+    bottom: $margin;
+    left: $margin;
+
+    .Link {
+      height: auto;
+      padding: $margin;
+      background-color: $overlay-color;
+    }
   }
 }

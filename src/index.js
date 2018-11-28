@@ -41,7 +41,7 @@ class App {
    */
   static showIntroduction(onComplete = f => f) {
     document.body.style.opacity = 1;
-    const tl = new TimelineLite({ onComplete });
+    const tl = new TimelineLite({ onComplete, delay: 0.5 });
     tl.add(header.show());
     // tl.add(content.show(), '-=2');
     tl.add(content.show(), '-=0.85');

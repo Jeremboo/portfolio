@@ -12,7 +12,7 @@ class Details {
   _initDetailToShown() {
     this.currentWrapper.classList.remove('_hidden');
     for (let i = 0; i < this.currentLinesShown.length; i++) {
-      TweenMax.set(this.currentLinesShown[i], { ...fadeInFromVars });
+      TweenMax.set(this.currentLinesShown[i], { ...fadeInFromVars, rotationZ: 5 });
     }
   }
 
@@ -24,7 +24,7 @@ class Details {
   showDetail(projectId) {
     const tl = new TimelineLite();
     const newWrapper = document.getElementById(projectId);
-    const newLinesShown = Array.from(newWrapper.querySelectorAll(`.Details-line span, .Link > a`));
+    const newLinesShown = Array.from(newWrapper.querySelectorAll(`body:not(.no-touch) .Details-title, .Details-line span, .Link > a`));
     // Hide the current detail shown
     if (this.currentLinesShown) {
       tl.add(this.hideCurrentDetail());
@@ -52,7 +52,7 @@ class Details {
     if (typeof this.currentTween.length === 'undefined') this.currentTween.kill();
 
     const arrayReversed = this.currentLinesShown.reverse();
-    this.currentTween = TweenMax.staggerTo(arrayReversed, 0.3, { ...fadeOutToVarsClassic, y: 32 }, 0.03);
+    this.currentTween = TweenMax.staggerTo(arrayReversed, 0.3, { ...fadeOutToVarsClassic, y: 32, rotationZ: 5 }, 0.03);
     return this.currentTween;
   }
 }

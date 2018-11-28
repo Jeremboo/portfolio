@@ -38,8 +38,8 @@ export default class CubeExplosion extends Object3D {
 
   addCube(texture) {
     const cube = new FloatingCube(
-      this.cubeSource.x + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION, CUBE_SCALE_MIN_EXPLOSION),
-      this.cubeSource.y + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION, CUBE_SCALE_MIN_EXPLOSION),
+      this.cubeSource.x + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION * 0.5, CUBE_SCALE_MIN_EXPLOSION * 0.5),
+      this.cubeSource.y + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION * 0.5, CUBE_SCALE_MIN_EXPLOSION * 0.5),
       getRandomFloat(CUBE_SCALE_MIN_EXPLOSION, CUBE_SCALE_MAX_EXPLOSION),
     );
     cube.setDetached();

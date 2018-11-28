@@ -1,10 +1,6 @@
 import { TweenMax } from 'gsap';
 
-import details from '../Details';
-import engine from '../Engine';
-
 import { fadeInFromVars, fadeInToVars, fadeOutToVarsClassic } from '../../props';
-
 
 class Projects {
   constructor() {
@@ -21,11 +17,6 @@ class Projects {
     // Set style for the animations
     this.items.forEach((item) => {
       TweenMax.set(item, { ...fadeInFromVars });
-
-      // Add interaction
-      item.parentNode.addEventListener('click', () => {
-        this.selectProject(item.parentNode);
-      });
     });
   }
 
@@ -34,39 +25,37 @@ class Projects {
    * * INTERACTIONS
    * * *******************
    */
-  toggleVisibility() {
-    this.wrapper.classList.toggle('_hidden');
+
+  // Bind each project
+  onClick(callback) {
+    this.items.forEach(item => {
+      item.parentNode.addEventListener('click', () => {
+        callback(item.parentNode);
+      });
+    });
   }
 
-  // Project selection
-  selectProject(project) {
-    if (project.classList.contains('_open')) return;
-
-    // Animation
+  // Selection managment
+  select(project) {
     this.wrapper.classList.add('_itemOpen');
-    this.unselectedProject();
+    this.unselect();
     this.selectedProject = project;
     this.selectedProject.classList.add('_open');
-
-    // Open project
-    const projectId = this.selectedProject.getAttribute('data-id');
-    details.showDetail(projectId);
-
-    // Show cubes
-    engine.showProject(projectId);
   }
 
-  unselectedProject() {
+  unselect() {
     if (this.selectedProject) this.selectedProject.classList.remove('_open');
   }
 
   closeSelection() {
     this.wrapper.classList.remove('_itemOpen');
-    this.unselectedProject();
+    this.unselect();
     this.selectedProject = false;
+  }
 
-    // Hide cubes
-    engine.hideProject();
+  // Visibility
+  toggleVisibility() {
+    this.wrapper.classList.toggle('_hidden');
   }
 
   /**
@@ -84,5 +73,4 @@ class Projects {
   }
 }
 
-const projects = new Projects();
-export default projects;
+export default new Projects();

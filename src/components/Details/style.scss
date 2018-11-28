@@ -1,12 +1,11 @@
 
 .Details {
-  font-size: 1rem;
   letter-spacing: 1px;
 
-  &-line {
+  &-line, &-header {
     display: flex;
-    padding: 2px 0;
     overflow: hidden;
+    line-height: 2rem;
   }
 
   // Tag list
@@ -19,8 +18,33 @@
     padding-bottom: $margin * 0.25;
   }
 
+  // HACK
   // Footer button
-  button {
+  .Link {
     margin-top: $margin * 0.75;
+    margin-right: $margin * 0.25;
+  }
+
+  // MOBILE
+  &-header {
+    display: none;
+    width: 100%;
+    margin-bottom: $margin;
+  }
+
+  &-title {
+    font-size: 1.2rem;
+    letter-spacing: 2.5px;
+    font-weight: normal;
+  }
+
+  @include mq($until: tablet) {
+    margin-top: $margin;
+    &-header {
+      display: block;
+    }
+    .Link {
+      margin-top: $margin * 1.5;
+    }
   }
 }

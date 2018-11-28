@@ -12,8 +12,8 @@ $images: '#{$ASSET_PATH}images/';
 $font-size: 1em;
 $margin: 16px;
 
-$bodyPaddingLeft: $margin * 9;
-$bodyPaddingTop: $margin * 6;
+$bodyPaddingLeft: ($margin * 9) * 0.75;
+$bodyPaddingTop: ($margin * 6) * 0.75;
 
 // Z-INDEX
 $webgl-zi: -1;
@@ -21,6 +21,7 @@ $webgl-zi: -1;
 // COLOR
 $main-color:       #C9F0FF;
 $background-color: #fff;
+$overlay-color:    rgba(255, 255, 255, 0.85);
 $font-color:       #070707;
 $error-color:      #FE3535;
 

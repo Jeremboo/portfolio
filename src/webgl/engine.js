@@ -11,7 +11,10 @@ import CubeExplosion from './objects/CubeExplosion';
 import Lights from './objects/Lights';
 import Plane from './objects/Plane';
 
-import { HAS_TOUCH, CUBE_SCALE_MAX, CUBE_SCALE_MAX_EXPLOSION } from '../props';
+import {
+  HAS_TOUCH, CUBE_SCALE_MAX,
+  PADDING_LEFT, PADDING_TOP,
+} from '../props';
 
 // INTERACTION
 const EMPTY_ARRAY = [];
@@ -50,10 +53,9 @@ export default class Engine {
       this.physic.resize(this.webgl.cameraWidth * 0.5, this.webgl.cameraHeight * 0.5);
 
       // Update the cube position
-      // padding: 96px 144px;
       this.cubeWavePosition = {
-        x: this.webgl.camera.right - ((this.webgl.cameraWidth / w) * 144) - (CUBE_SCALE_MAX * 0.5),
-        y: this.webgl.camera.bottom + ((this.webgl.cameraHeight / h) * 96) + (CUBE_SCALE_MAX * 0.5),
+        x: this.webgl.camera.right - ((this.webgl.cameraWidth / w) * PADDING_LEFT) - (CUBE_SCALE_MAX * 0.5),
+        y: this.webgl.camera.bottom + ((this.webgl.cameraHeight / h) * PADDING_TOP) + (CUBE_SCALE_MAX * 0.5),
       };
     }
   }
@@ -158,6 +160,19 @@ export default class Engine {
     // ##############
     // FIRST OBJECT RENDERER
     // Render complex objects during one frame to compute them now and limit the freeze next time.
+
+    // Compute one cubeW to limit lag ??
+    // const cubeW = new CubeWave(
+    //   this.cubeWavePosition.x,
+    //   this.cubeWavePosition.y,
+    //   CUBE_SCALE_MAX,
+    // );
+    // this.webgl.add(cubeW);
+    // this.physic.addCubes(cubeW.children);
+    // cubeW.show();
+    // this.physic.removeCubes(cubeW.children);
+    // this.webgl.remove(cubeW);
+
     this.webgl.computeMeshes([]);
   }
 
@@ -189,7 +204,13 @@ export default class Engine {
    * * *******************
    */
 
-  handleDownEvent() {
+  handleDownEvent(e) {
+    if (HAS_TOUCH) {
+      // Check if the touch intersect a cube on mobile
+      const x = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      const y = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+      this.updateIntersectedCube(x, y);
+    }
     this.physic.handleDownEvent();
   }
 
@@ -201,6 +222,17 @@ export default class Engine {
     const x = e.clientX || (e.touches && e.touches[0].clientX) || 0;
     const y = e.clientY || (e.touches && e.touches[0].clientY) || 0;
 
+    this.updateIntersectedCube(x, y);
+
+    // transform mouse event to meter position
+    this.physic.handleMoveEvent(
+      (x * this.webgl.ratioWidth) - this.webgl.camera.right,
+      this.webgl.camera.top - (y * this.webgl.ratioHeight),
+    );
+  }
+
+  // Get the intersected cube at a pixel position
+  updateIntersectedCube(x, y) {
     // Check the intersections between the mouse and a cube
     const normalizedPosition = this.webgl.getNormalizedPosFromScreen(x, y);
     this.mouseRaycaster.setFromCamera(normalizedPosition, this.webgl.camera);
@@ -208,12 +240,6 @@ export default class Engine {
 
     // Handle interaction
     this.physic.updateCurrentIntersectCube(intersects[0]);
-
-    // transform mouse event to meter position
-    this.physic.handleMoveEvent(
-      (x * this.webgl.ratioWidth) - this.webgl.camera.right,
-      this.webgl.camera.top - (y * this.webgl.ratioHeight),
-    );
   }
 
   /**
@@ -262,7 +288,6 @@ export default class Engine {
 
     assetsController.loadAsset('projects', projectId).then((asset) => {
       // TODO check if the promise take more than 200ms
-      console.log(asset);
       this.webgl.add(newCubeWave);
       this.physic.addCubes(newCubeWave.children);
       setTimeout(() => {

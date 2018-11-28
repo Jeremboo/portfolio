@@ -5,7 +5,7 @@ import loop from '../../util/loop';
 import radian from '../../util/radian';
 
 import {
-  BOX_OVERFLOWN_FRICTION,
+  BOX_OVERFLOWN_FRICTION, HAS_TOUCH,
 } from '../../props';
 
 export default class Physic extends World {
@@ -125,22 +125,23 @@ export default class Physic extends World {
 
   handleMoveEvent(x, y) {
     // When the mouse coordinate brush a cube.
-    if (this.currentIntersectCube) {
-      this.currentImpulse[0] = (x - this.currentMousePosition[0]) * BOX_OVERFLOWN_FRICTION;
-      this.currentImpulse[1] = (y - this.currentMousePosition[1]) * BOX_OVERFLOWN_FRICTION;
-      this.currentUV[0] = this.currentIntersectCube.uv.x - 0.5;
-      this.currentUV[1] = this.currentIntersectCube.uv.y - 0.5;
-      this.currentIntersectCube.object.applyImpulse(this.currentImpulse, this.currentUV);
+    if (!HAS_TOUCH) {
+      if (this.currentIntersectCube) {
+        this.currentImpulse[0] = (x - this.currentMousePosition[0]) * BOX_OVERFLOWN_FRICTION;
+        this.currentImpulse[1] = (y - this.currentMousePosition[1]) * BOX_OVERFLOWN_FRICTION;
+        this.currentUV[0] = this.currentIntersectCube.uv.x - 0.5;
+        this.currentUV[1] = this.currentIntersectCube.uv.y - 0.5;
+        this.currentIntersectCube.object.applyImpulse(this.currentImpulse, this.currentUV);
+      }
+      // Update the current mouse position for the next frame
+      this.currentMousePosition[0] = x;
+      this.currentMousePosition[1] = y;
     }
 
     // When a cube is dragged
     if (this.draggedCube) {
       this.draggedCube.setAttractionPos(x, y);
     }
-
-    // Update the current mouse position for the next frame
-    this.currentMousePosition[0] = x;
-    this.currentMousePosition[1] = y;
   }
 
   handleDownEvent() {

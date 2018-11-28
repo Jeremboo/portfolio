@@ -5,6 +5,9 @@ import radian from './util/radian';
 
 // GLOBALS
 export const HAS_TOUCH = _hasTouch();
+// Body padding
+export const PADDING_LEFT = HAS_TOUCH ? 35 : 144 * 0.75;
+export const PADDING_TOP = HAS_TOUCH ? 60 : 96 * 0.75;
 
 // GSAP TWEEN VARS
 // export const elasticEase = Elastic.easeOut.config(0.5, 1);
@@ -31,8 +34,8 @@ export const FLOATING_FRICTION = 0.92;
 export const PITCHING_VELOCITY = 0.008;
 export const PITCHING_FRICTION = 0.955;
 // When the cube come to the right place
-export const TARGETED_POSITION_ATTRACTION = 0.3; // 0.5
-export const TARGETED_POSITION_ATTRACTION_ON_DRAG = 1.8;
+export const TARGETED_POSITION_ATTRACTION = HAS_TOUCH ? 0.5 : 0.3; // 0.5
+export const TARGETED_POSITION_ATTRACTION_ON_DRAG = HAS_TOUCH ? 3 : 1.8;
 // frictions
 export const MOTION_FRICTION = 0.5;
 export const SLANT_FRICTION = 0.7;
@@ -47,10 +50,10 @@ export const MOTION_FRICTION_DETACHED = 0.1;
 export const ORIENTATION_FRICTION_DETACHED = 0;
 
 // CUBE WAVE
-export const CUBE_SCALE_MAX = 4;
-export const CUBE_SCALE_MAX_EXPLOSION = 2.75;
+export const CUBE_SCALE_MAX = HAS_TOUCH ? 2.5 : 4;
+export const CUBE_SCALE_MAX_EXPLOSION = HAS_TOUCH ? 2 : 2.75;
 export const CUBE_SCALE_MIN = 0.2;
-export const CUBE_SCALE_MIN_EXPLOSION = 1;
+export const CUBE_SCALE_MIN_EXPLOSION = HAS_TOUCH ? 0.75 : 1;
 export const MARGIN = 0.15;
 export const RECURCIVE_RANDOM = 0.3;
-export const SCALE_REDUCER = 0.4;
+export const SCALE_REDUCER = HAS_TOUCH ? 0.325 : 0.4;
