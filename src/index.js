@@ -1,10 +1,14 @@
+import '@babel/polyfill';
+
 import { TimelineLite } from 'gsap';
 import domready from 'domready';
 
 import header from './components/Header';
 import content from './components/Content';
+import engine from './components/Engine';
 
-import { hasTouch } from './util/';
+import { HAS_TOUCH } from './props';
+
 
 class App {
   /**
@@ -12,12 +16,22 @@ class App {
    * * INIT
    * * *******************
    */
-  static init() {
+  static async init() {
     // Check the touch support
-    if (!hasTouch()) document.body.classList.add('no-touch');
+    if (!HAS_TOUCH) document.body.classList.add('no-touch');
 
-    // Show the website
-    this.showIntroduction();
+    // Init webgl
+    try {
+      await engine.init();
+      engine.start();
+    } catch (e) {
+      console.error(e);
+      // TODO show an error message
+    }
+
+    this.showIntroduction(() => {
+      // Anim end
+    });
   }
 
   /**
@@ -27,7 +41,7 @@ class App {
    */
   static showIntroduction(onComplete = f => f) {
     document.body.style.opacity = 1;
-    const tl = new TimelineLite({ onComplete });
+    const tl = new TimelineLite({ onComplete, delay: 0.5 });
     tl.add(header.show());
     // tl.add(content.show(), '-=2');
     tl.add(content.show(), '-=0.85');

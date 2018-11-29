@@ -1,0 +1,50 @@
+
+.Details {
+  letter-spacing: 1px;
+
+  &-line, &-header {
+    display: flex;
+    overflow: hidden;
+    line-height: 2rem;
+  }
+
+  // Tag list
+  &-tags {
+    display: none;
+    font-size: 0.8rem;
+  }
+  &-tag {
+    padding-right: $margin * 0.75;
+    padding-bottom: $margin * 0.25;
+  }
+
+  // HACK
+  // Footer button
+  .Link {
+    margin-top: $margin * 0.75;
+    margin-right: $margin * 0.25;
+  }
+
+  // MOBILE
+  &-header {
+    display: none;
+    width: 100%;
+    margin-bottom: $margin;
+  }
+
+  &-title {
+    font-size: 1.2rem;
+    letter-spacing: 2.5px;
+    font-weight: normal;
+  }
+
+  @include mq($until: tablet) {
+    margin-top: $margin;
+    &-header {
+      display: block;
+    }
+    .Link {
+      margin-top: $margin * 1.5;
+    }
+  }
+}

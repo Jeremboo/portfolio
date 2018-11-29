@@ -16,7 +16,11 @@
 
   // animtations
   &-title, &-paragraph {
-    span { display: flex; }
+    span {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
   }
   &-title, &-paragraph, &-footer {
     overflow: hidden;
@@ -79,4 +83,19 @@
       left: -2px;
     }
   }
+}
+
+@keyframes fireburn {
+  0%   { transform: rotateY(180deg); }
+  50%  { transform: rotateY(0deg); }
+  100% { transform: rotateY(180deg); }
+}
+
+.fire {
+  margin-left: 4px;
+  margin-right: -7px;
+  font-size: 1.5rem;
+  margin-top: -3rem;
+  transform-origin: 0.75rem;
+  animation: fireburn 0.4s steps(1, end) infinite;
 }

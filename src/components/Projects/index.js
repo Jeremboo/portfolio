@@ -2,7 +2,6 @@ import { TweenMax } from 'gsap';
 
 import { fadeInFromVars, fadeInToVars, fadeOutToVarsClassic } from '../../props';
 
-
 class Projects {
   constructor() {
     // Get elements
@@ -12,6 +11,8 @@ class Projects {
 
     // Bind
     this.toggleVisibility = this.toggleVisibility.bind(this);
+
+    this.selectedProject = false;
 
     // Set style for the animations
     this.items.forEach((item) => {
@@ -24,6 +25,35 @@ class Projects {
    * * INTERACTIONS
    * * *******************
    */
+
+  // Bind each project
+  onClick(callback) {
+    this.items.forEach(item => {
+      item.parentNode.addEventListener('click', () => {
+        callback(item.parentNode);
+      });
+    });
+  }
+
+  // Selection managment
+  select(project) {
+    this.wrapper.classList.add('_itemOpen');
+    this.unselect();
+    this.selectedProject = project;
+    this.selectedProject.classList.add('_open');
+  }
+
+  unselect() {
+    if (this.selectedProject) this.selectedProject.classList.remove('_open');
+  }
+
+  closeSelection() {
+    this.wrapper.classList.remove('_itemOpen');
+    this.unselect();
+    this.selectedProject = false;
+  }
+
+  // Visibility
   toggleVisibility() {
     this.wrapper.classList.toggle('_hidden');
   }
@@ -43,5 +73,4 @@ class Projects {
   }
 }
 
-const projects = new Projects();
-export default projects;
+export default new Projects();

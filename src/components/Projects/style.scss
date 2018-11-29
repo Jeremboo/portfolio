@@ -1,23 +1,5 @@
 
 .Projects {
-  // #####
-  // Gradients when scroll
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: $margin;
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-  }
-
-  &::after {
-    top: auto;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
-  }
 
   // #####
   // The scrolled list
@@ -27,6 +9,15 @@
     // HACK
     .Link:first-child {
       margin-top: $margin;
+    }
+  }
+
+  // #####
+  // Item open
+  &._itemOpen {
+    // HACK
+    .Link {
+      opacity: 0.1;
     }
   }
 }

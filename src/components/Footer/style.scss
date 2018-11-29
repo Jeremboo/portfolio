@@ -1,4 +1,32 @@
 
 .Footer {
+  position: absolute;
+  top: $bodyPaddingTop + 32px;
+  right: $bodyPaddingLeft - 4px;
+  // height: 8rem;
+  display: flex;
+  align-items: center;
 
+  //HACK
+  .Link {
+    height: 23px;
+  }
+
+  @include mq($until: desktop) {
+    top: $margin * 2;
+    right: $margin * 2;
+  }
+
+  @include mq($until: tablet) {
+    top: auto;
+    right: auto;
+    bottom: $margin;
+    left: $margin;
+
+    .Link {
+      height: auto;
+      padding: $margin;
+      background-color: $overlay-color;
+    }
+  }
 }

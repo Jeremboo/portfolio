@@ -1,11 +1,15 @@
 {
   "presets": [
-    ["@babel/preset-env", { "useBuiltIns": "entry" }]
+    ["@babel/preset-env", {
+      "useBuiltIns": "entry",
+      "targets": {
+        "browsers": [
+          "last 2 versions",
+          "IE >= 9"
+        ]
+      }
+    }]
   ],
-  "plugins": [
-    
-  ],
-  "env": {
-
-  }
+  "plugins": [],
+  "env": {}
 }

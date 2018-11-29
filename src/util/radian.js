@@ -1,0 +1,1 @@
+export default (deg) => (Math.PI * deg) / 180;

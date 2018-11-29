@@ -34,7 +34,7 @@ $subtitleSize: 32;
   }
 
   // MOBILE
-  @include mq($until: tablet) {
+  @include mq($until: desktop) {
     // V1 ------------------------------
     margin-left: -5px;
     &-title {
@@ -101,7 +101,9 @@ $subtitleSize: 32;
     & > span+span {
       z-index: 1;
     }
+  }
 
+  @include mq($until: desktop) {
     &._withMask > span::after {
       margin-top: -5px;
     }
