@@ -1,5 +1,5 @@
 import {
-  BoxGeometry, MeshToonMaterial, Mesh
+  BoxGeometry, MeshBasicMaterial, Mesh
 } from 'three';
 
 import { Body, Box } from 'p2';
@@ -14,6 +14,7 @@ import {
   UV_REDUCTION, MASS, FLOATING_LINE,
   MIN_ROTATION, MAX_ROTATION,
   MOTION_FRICTION_DETACHED, TARGETED_POSITION_ATTRACTION_DETACHED, ORIENTATION_FRICTION_DETACHED,
+  CUBE_MATERIAL,
 } from '../../props';
 
 /**
@@ -25,16 +26,13 @@ export default class Cube extends Mesh {
   constructor(x, y, scale) {
     // Create an array of materials to update the face later
     // TODO change the toon material to a more efficient material (MeshLambertMaterial)
-    const material = new MeshToonMaterial({
-      color: 0xC9F0FF,
-    });
     const faceMaterials = [
-      material, // Left side
-      material, // Right side
-      material, // Top side
-      material, // Bottom side
-      material, // Front side
-      undefined  // Back side. Not need to be rendered
+      CUBE_MATERIAL, // Left side
+      CUBE_MATERIAL, // Right side
+      CUBE_MATERIAL, // Top side
+      CUBE_MATERIAL, // Bottom side
+      CUBE_MATERIAL, // Front side
+      undefined,     // Back side. Not need to be rendered
     ];
 
     const geometry = new BoxGeometry(scale, scale, scale);
@@ -239,7 +237,7 @@ export default class Cube extends Mesh {
 
   setTexture(texture) {
     // TODO create a custom shader to add shadowing to the texture
-    this.material[4] = new MeshToonMaterial({
+    this.material[4] = new MeshBasicMaterial({
       map: texture,
     });
   }

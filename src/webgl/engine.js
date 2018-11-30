@@ -311,6 +311,7 @@ export default class Engine {
       if (this.currentCubeWave.isExplosion) {
         const cube = this.currentCubeWave.addCube(scribbleAsset);
         this.physic.addCube(cube);
+        cube.show();
       } else {
         assetsController.stopScribblePackLoading();
       }

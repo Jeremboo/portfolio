@@ -44,9 +44,7 @@ export default class CubeExplosion extends Object3D {
     );
     cube.setDetached();
     cube.setTexture(texture);
-    this.children.push(cube);
     this.add(cube);
-    cube.show();
     return cube;
   }
 

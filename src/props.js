@@ -1,3 +1,4 @@
+import { MeshToonMaterial } from 'three';
 import { Power3 } from 'gsap';
 
 import _hasTouch from './util/hasTouch';
@@ -5,7 +6,6 @@ import radian from './util/radian';
 
 // GLOBALS
 export const HAS_TOUCH = _hasTouch();
-// Body padding
 export const PADDING_LEFT = HAS_TOUCH ? 35 : 144 * 0.75;
 export const PADDING_TOP = HAS_TOUCH ? 60 : 96 * 0.75;
 
@@ -24,6 +24,11 @@ export const fadeOutToVarsClassic = { ...fadeInFromVarsClassic, ease: Power3.eas
 export const BOX_OVERFLOWN_FRICTION = 4;
 
 // CUBE
+export const CUBE_COLOR = 0xC9F0FF;
+export const CUBE_MATERIAL = new MeshToonMaterial({
+  color: CUBE_COLOR,
+});
+// Physic
 export const MASS = 5;
 export const FLOATING_LINE = 0.2; // 0.425
 export const UV_REDUCTION = 0.2;
@@ -51,7 +56,7 @@ export const ORIENTATION_FRICTION_DETACHED = 0;
 
 // CUBE WAVE
 export const CUBE_SCALE_MAX = HAS_TOUCH ? 2.5 : 4;
-export const CUBE_SCALE_MAX_EXPLOSION = HAS_TOUCH ? 2 : 2.75;
+export const CUBE_SCALE_MAX_EXPLOSION = HAS_TOUCH ? 2 : 3.5;
 export const CUBE_SCALE_MIN = 0.2;
 export const CUBE_SCALE_MIN_EXPLOSION = HAS_TOUCH ? 0.75 : 1;
 export const MARGIN = 0.15;
