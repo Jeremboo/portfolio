@@ -1,11 +1,13 @@
-import { MeshToonMaterial } from 'three';
+import { MeshToonMaterial, MeshBasicMaterial } from 'three';
 import { Power3 } from 'gsap';
 
 import _hasTouch from './util/hasTouch';
+import _hasGPU from './util/hasGPU';
 import radian from './util/radian';
 
 // GLOBALS
 export const HAS_TOUCH = _hasTouch();
+export const HAS_GPU = _hasGPU();
 export const PADDING_LEFT = HAS_TOUCH ? 35 : 144 * 0.75;
 export const PADDING_TOP = HAS_TOUCH ? 60 : 96 * 0.75;
 
@@ -25,7 +27,8 @@ export const BOX_OVERFLOWN_FRICTION = 4;
 
 // CUBE
 export const CUBE_COLOR = 0xC9F0FF;
-export const CUBE_MATERIAL = new MeshToonMaterial({
+export const CUBE_MESH_MATERIAL = HAS_GPU ? MeshToonMaterial : MeshBasicMaterial;
+export const CUBE_MATERIAL = new CUBE_MESH_MATERIAL({
   color: CUBE_COLOR,
 });
 // Physic
