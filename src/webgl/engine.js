@@ -270,6 +270,7 @@ export default class Engine {
    */
   hideProject() {
     if (this.currentCubeWave) this._removeCubeGroup(this.currentCubeWave);
+    this.currentCubeWave = false;
   }
 
   /**
