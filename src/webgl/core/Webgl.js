@@ -4,6 +4,7 @@ import {
 } from 'three';
 
 import loop from '../../util/loop';
+import { HAS_GPU } from '../../props';
 
 export default class Webgl {
   constructor (canvas, w, h) {
@@ -26,15 +27,15 @@ export default class Webgl {
 
     // renderer
     this.renderer = new WebGLRenderer({
-      antialias: true,
+      antialias: true, // HAS_GPU
       canvas
     });
-    this.renderer.setPixelRatio(window.devicePixelRatio || 1);
+    this.renderer.setPixelRatio(HAS_GPU && Math.min(1.6, window.devicePixelRatio) || 1);
     this.renderer.setClearColor(0xffffff, 1);
     // this.renderer.toneMapping = Uncharted2ToneMapping;
     // this.renderer.toneMappingExposure = 2.5;
     // this.renderer.toneMappingWhitePoint = 1.5;
-    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.enabled = HAS_GPU;
     // this.renderer.shadowMap.type = BasicShadowMap; // default THREE.PCFShadowMap
 
     // Bind functions

@@ -99,7 +99,7 @@ class Content {
       return details.showDetail(projectId);
     });
     tl.add(() => {
-      engine.showProject(projectId);
+      // engine.showProject(projectId);
     }, '+=0.5');
   }
 
