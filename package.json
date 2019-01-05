@@ -1,11 +1,11 @@
 {
-  "name": "folio",
-  "version": "0.0.0",
-  "description": "Portfolio",
+  "name": "jeremie-boulay-portfolio",
+  "version": "2.0.0",
+  "description": "My personal Portfolio",
   "author": {
     "name": "Jérémie Boulay",
     "email": "jeremi.boulay@gmail.com",
-    "url": "https://github.com/Jam3"
+    "url": "https://jeremieboulay.fr"
   },
   "scripts": {
     "start": "npm-run-all preloader copy style dev",
