@@ -13,7 +13,6 @@ import {
   MOTION_FRICTION, SLANT_FRICTION, ORIENTATION_FRICTION,
   UV_REDUCTION, MASS, FLOATING_LINE,
   MIN_ROTATION, MAX_ROTATION,
-  MOTION_FRICTION_DETACHED, TARGETED_POSITION_ATTRACTION_DETACHED, ORIENTATION_FRICTION_DETACHED,
   CUBE_MATERIAL,
 } from '../../props';
 
@@ -47,7 +46,6 @@ export default class Cube extends Mesh {
       y: getRandomFloat(MIN_ROTATION, MAX_ROTATION) * (Math.random() > 0.5 ? 1 : -1),
     };
 
-    this.detached = false;
     this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
     this.motionFriction = MOTION_FRICTION;
     this.orientationFriction = ORIENTATION_FRICTION;
@@ -155,7 +153,6 @@ export default class Cube extends Mesh {
     this.UVAttraction[1] = this.draggingPosition[1] * UV_REDUCTION;
 
     this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION_ON_DRAG;
-    if (this.detached) this.motionFriction = MOTION_FRICTION;
   }
 
   setAttractionPos(x, y) {
@@ -171,26 +168,12 @@ export default class Cube extends Mesh {
     this.targetedPosition.x = this.initialPosition.x;
     this.targetedPosition.y = this.initialPosition.y;
 
-    if (!this.detached) {
-      this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
-    } else {
-      this.motionFriction = MOTION_FRICTION_DETACHED;
-      this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION_DETACHED;
-      this.orientationFriction = ORIENTATION_FRICTION_DETACHED;
-    }
+    this.initAttraction();
   }
 
-  /**
-   * * *******************
-   * * DETAHED
-   * * *******************
-   */
-
-  setDetached() {
-    this.detached = true;
-    this.motionFriction = MOTION_FRICTION_DETACHED;
-    this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION_DETACHED;
-    this.orientationFriction = ORIENTATION_FRICTION_DETACHED;
+  // ! extracted to be overwrited when extended
+  initAttraction() {
+    this.currentAttractionVelocity = TARGETED_POSITION_ATTRACTION;
   }
 
   /**

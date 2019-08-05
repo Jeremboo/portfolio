@@ -6,8 +6,9 @@ import Webgl from './core/Webgl';
 import Physic from './core/Physic';
 import assetsController from './core/assetController';
 
-import CubeWave from './objects/CubeWave';
-import CubeExplosion from './objects/CubeExplosion';
+import CubeWave from './objects/CubesWave';
+import CubesIntroduction from './objects/CubesIntroduction';
+import CubeExplosion from './objects/CubesExplosion';
 import Lights from './objects/Lights';
 import Plane from './objects/Plane';
 
@@ -200,6 +201,29 @@ export default class Engine {
 
   /**
    * * *******************
+   * * INTRODUCTION
+   * * *******************
+   */
+  showIntroduction(callback) {
+    // TODO show a cube to the center
+    console.log('showIntroduction');
+
+    const cubeIntroduction = new CubesIntroduction(() => {
+      // On cube is detached
+      // detach the cube
+      this.handleUpEvent();
+    });
+    this.webgl.add(cubeIntroduction);
+    this.physic.addCube(cubeIntroduction.cube);
+    cubeIntroduction.show();
+
+    this.currentCubeWave = cubeIntroduction;
+  }
+
+
+
+  /**
+   * * *******************
    * * INTERACTIONS
    * * *******************
    */
@@ -307,7 +331,7 @@ export default class Engine {
     );
     this.webgl.add(cubeExplosion);
 
-    assetsController.loadScribblePack((scribbleAsset) => {
+    assetsController.loadPackWithCallbackEachAsset('scribbles', (scribbleAsset) => {
       // Check is the currentCubeWave is still the cubeExplosion
       if (this.currentCubeWave.isExplosion) {
         const cube = this.currentCubeWave.addCube(scribbleAsset);

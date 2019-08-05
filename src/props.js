@@ -52,10 +52,10 @@ export const ORIENTATION_FRICTION = 0.05;
 export const MIN_ROTATION = radian(5);
 export const MAX_ROTATION = radian(25);
 
-// Detached
-export const TARGETED_POSITION_ATTRACTION_DETACHED = 0.1;
-export const MOTION_FRICTION_DETACHED = 0.1;
-export const ORIENTATION_FRICTION_DETACHED = 0;
+// SLIDING
+export const TARGETED_POSITION_ATTRACTION_SLIDING = 0.1;
+export const MOTION_FRICTION_SLIDING = 0.1;
+export const ORIENTATION_FRICTION_SLIDING = 0;
 
 // CUBE WAVE
 export const CUBE_SCALE_MAX = HAS_TOUCH ? 2.5 : 4;

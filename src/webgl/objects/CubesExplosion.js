@@ -1,7 +1,7 @@
 import { Object3D } from 'three';
 import { TimelineLite } from 'gsap';
 
-import FloatingCube from './Cube';
+import CubeSliding from './CubeSliding';
 
 import {
   CUBE_SCALE_MAX_EXPLOSION, CUBE_SCALE_MIN_EXPLOSION,
@@ -37,12 +37,11 @@ export default class CubeExplosion extends Object3D {
    */
 
   addCube(texture) {
-    const cube = new FloatingCube(
+    const cube = new CubeSliding(
       this.cubeSource.x + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION * 0.5, CUBE_SCALE_MIN_EXPLOSION * 0.5),
       this.cubeSource.y + getRandomFloat(-CUBE_SCALE_MIN_EXPLOSION * 0.5, CUBE_SCALE_MIN_EXPLOSION * 0.5),
       getRandomFloat(CUBE_SCALE_MIN_EXPLOSION, CUBE_SCALE_MAX_EXPLOSION),
     );
-    cube.setDetached();
     cube.setTexture(texture);
     this.add(cube);
     return cube;

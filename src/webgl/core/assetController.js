@@ -126,7 +126,7 @@ class AssetController {
       [ASSET_TYPES.TEX]: new TextureLoader(),
       [ASSET_TYPES.IMG]: new ImageLoader()
     };
-    this.loadScribbleAndShow = false;
+    this.loaderWithCallbackStarted = false;
   }
 
   /**
@@ -152,6 +152,26 @@ class AssetController {
     return this._loadPack(ASSET_PACKS[packName], onProgress);
   }
 
+  async loadPackWithCallbackEachAsset(packName, onAssetLoadedCallback) {
+    if (this.loaderWithCallbackStarted) return;
+    this.loaderWithCallbackStarted = true;
+
+    // Load scribble asset and call callback with it was loaded
+    for (let i = 0; i < ASSET_PACKS[packName].length; i++) {
+      if (this.loaderWithCallbackStarted) {
+        await this._loadAsset(ASSET_PACKS[packName][i]);
+        setTimeout(() => {
+          onAssetLoadedCallback(this.get(ASSET_PACKS[packName][i].name));
+        }, (100 * i) + 450);
+      }
+    }
+    this.stopScribblePackLoading();
+  }
+
+  stopScribblePackLoading() {
+    this.loaderWithCallbackStarted = false;
+  }
+
   /**
    * Load a specific asset into a pack
    * @param  {String} packName the name of the pack
@@ -161,29 +181,6 @@ class AssetController {
   loadAsset(packName, assetName, onProgress = f => f) {
     const assetProps = ASSET_PACKS[packName].filter((asset) => asset.name === assetName)[0];
     return this._loadAsset(assetProps, onProgress);
-  }
-
-  /**
-   * * *******************
-   * * CUSTOM LOADERS
-   */
-
-  async loadScribblePack(onAssetLoadedCallback) {
-    this.loadScribbleAndShow = true;
-
-    // Load scribble asset and call callback avec it was loaded
-    for (let i = 0; i < ASSET_PACKS.scribbles.length; i++) {
-      if (this.loadScribbleAndShow) {
-        await this._loadAsset(ASSET_PACKS.scribbles[i]);
-        setTimeout(() => {
-          onAssetLoadedCallback(this.get(ASSET_PACKS.scribbles[i].name));
-        }, (100 * i) + 450);
-      }
-    }
-  }
-
-  stopScribblePackLoading() {
-    this.loadScribbleAndShow = false;
   }
 
   /**

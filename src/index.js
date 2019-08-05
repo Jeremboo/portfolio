@@ -29,8 +29,9 @@ class App {
       // TODO show an error message
     }
 
-    this.showIntroduction(() => {
-      // Anim end
+    engine.showIntroduction();
+    this.showHome(() => {
+      //
     });
   }
 
@@ -39,7 +40,7 @@ class App {
    * * ANIMATIONS
    * * *******************
    */
-  static showIntroduction(onComplete = f => f) {
+  static showHome(onComplete = f => f) {
     document.body.style.opacity = 1;
     const tl = new TimelineLite({ onComplete, delay: 0.5 });
     tl.add(header.show());
