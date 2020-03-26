@@ -1,278 +1,524 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Jérémie Boulay - Creative Developer</title>
-  <meta name="author" content="Jérémie Boulay">
-  <meta name="owner" content="Jérémie Boulay">
-  <meta name="location" content="Paris, FRANCE">
-  <meta name="keywords" content="creative developer, developer, gobelins, portfolio, front-end, freelance">
-  <meta name="description" content="Creative Front-End Developer, I love doing code to create interactive things!">
-  <meta name="copyright" content="© Copyright 2018 - Jérémie Boulay">
-  <meta name="robots" content="index, follow">
-  <!--
+  <head>
+    <title>Jérémie Boulay - Creative Developer</title>
+    <meta name="author" content="Jérémie Boulay" />
+    <meta name="owner" content="Jérémie Boulay" />
+    <meta name="location" content="Paris, FRANCE" />
+    <meta name="keywords" content="creative developer, developer, gobelins, portfolio, front-end, freelance" />
+    <meta name="description" content="Creative Front-End Developer, I love doing code to create interactive things!" />
+    <meta name="copyright" content="© Copyright 2018 - Jérémie Boulay" />
+    <meta name="robots" content="index, follow" />
+    <!--
   Facebook metadata
   Info: https://developers.facebook.com/docs/sharing/webmasters
   Validator: https://developers.facebook.com/tools/debug/
   -->
-  <meta property="og:title" content="Jérémie Boulay - Creative Developer">
-  <meta property="og:site_name" content="Jérémie Boulay - Creative Developer">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jeremieboulay.fr/">
-  <meta property="og:image" content="https://jeremieboulay.fr{{BASENAME}}assets/images/sharing-facebook.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="628">
-  <meta property="og:description" content="Creative Front-End Developer, I love doing code to create interactive things!">
-  <meta property="og:locale" content="en_US">
-  <!--
+    <meta property="og:title" content="Jérémie Boulay - Creative Developer" />
+    <meta property="og:site_name" content="Jérémie Boulay - Creative Developer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jeremieboulay.fr/" />
+    <meta property="og:image" content="https://jeremieboulay.fr{{BASENAME}}assets/images/sharing-facebook.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+    <meta property="og:description" content="Creative Front-End Developer, I love doing code to create interactive things!" />
+    <meta property="og:locale" content="en_US" />
+    <!--
   Twitter metadata
   Info: https://dev.twitter.com/cards/overview
   Validator: https://cards-dev.twitter.com/validator
   -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@jeremboo">
-  <meta name="twitter:creator" content="@jeremboo">
-  <meta name="twitter:title" content="Jérémie Boulay - Creative Front-end Developer">
-  <meta name="twitter:description" content="Creative Front-End Developer, I love doing code to create interactive things!">
-  <meta name="twitter:image:src" content="https://jeremieboulay.fr{{BASENAME}}assets/images/sharing-twitter.png">
-  <meta charset="utf-8">
-  <base href="{{BASENAME}}">
-  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="{{stylesheet}}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ASSET_PATH}}images/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ASSET_PATH}}images/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ASSET_PATH}}images/favicons/favicon-16x16.png">
-<link rel="manifest" href="{{ASSET_PATH}}images/favicons/site.webmanifest">
-<link rel="mask-icon" href="{{ASSET_PATH}}images/favicons/safari-pinned-tab.svg" color="#ffffff">
-<link rel="shortcut icon" href="{{ASSET_PATH}}images/favicons/favicon.ico">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{{ASSET_PATH}}images/favicons/mstile-144x144.png">
-<meta name="msapplication-config" content="{{ASSET_PATH}}images/favicons/browserconfig.xml">
-<meta name="theme-color" content="#ffffff"></head>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jeremboo" />
+    <meta name="twitter:creator" content="@jeremboo" />
+    <meta name="twitter:title" content="Jérémie Boulay - Creative Front-end Developer" />
+    <meta name="twitter:description" content="Creative Front-End Developer, I love doing code to create interactive things!" />
+    <meta name="twitter:image:src" content="https://jeremieboulay.fr{{BASENAME}}assets/images/sharing-twitter.png" />
+    <meta charset="utf-8" />
+    <base href="{{BASENAME}}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no" />
+    <link rel="stylesheet" type="text/css" href="{{stylesheet}}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ASSET_PATH}}images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ASSET_PATH}}images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ASSET_PATH}}images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="{{ASSET_PATH}}images/favicons/site.webmanifest" />
+    <link rel="mask-icon" href="{{ASSET_PATH}}images/favicons/safari-pinned-tab.svg" color="#ffffff" />
+    <link rel="shortcut icon" href="{{ASSET_PATH}}images/favicons/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="{{ASSET_PATH}}images/favicons/mstile-144x144.png" />
+    <meta name="msapplication-config" content="{{ASSET_PATH}}images/favicons/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+
   <body>
-  <header class="Header">
-    <h1 class="Header-title">
-      <span id="title"><span>Jérémie</span> <span>Boulay</span></span>
-      <span id="subtitle" class="Header-subtitle"><span>- Creative Developer -</span></span>
-    </h1>
-  </header>
-  <section class="Content _wrapper">
-    <section class="Content-wrapper _wrapper">
-      <!-- PROJECT PART -->
-      <section id="projects-part" class="Projects _wrapper">
-        <ul class="Projects-list _wrapper">
-          <li class="Link _main" data-id="scribble-lab">
-            <p class="Link-wrapper"><span>Scribble lab</span></p>
-          </li>
-          <li class="Link" data-id="design-my-smart">
-            <p class="Link-wrapper"><span>2018 _ Design my smart</span></p>
-          </li>
-          <li class="Link _hidden" data-id="msc-roulette">
-            <p class="Link-wrapper"><span>2018 _ MSC Roulette</span></p>
-          </li>
-          <li class="Link" data-id="wellnesslab">
-            <p class="Link-wrapper"><span>2018 _ Wellnesslab</span></p>
-          </li>
-          <li class="Link _hidden" data-id="woli">
-            <p class="Link-wrapper"><span>2018 _ Woli</span></p>
-          </li>
-          <li class="Link _hidden" data-id="typox">
-            <p class="Link-wrapper"><span>2017 _ TypoX</span></p>
-          </li>
-          <li class="Link _hidden" data-id="inrs">
-            <p class="Link-wrapper"><span>2017 _ INRS Fête ses 70 ans</span></p>
-          </li>
-          <li class="Link _hidden" data-id="smart-electric-drive">
-            <p class="Link-wrapper"><span>2017 _ Smart Electric Drive</span></p>
-          </li>
-          <li class="Link _hidden" data-id="brainstorm">
-            <p class="Link-wrapper"><span>2017 _ Brainstorm Proto</span></p>
-          </li>
-          <li class="Link" data-id="omniwomen">
-            <p class="Link-wrapper"><span>2017 _ Omniwomen</span></p>
-          </li>
-          <li class="Link _hidden" data-id="voeux-sncf">
-            <p class="Link-wrapper"><span>2016 _ Voeux Voyage SNCF</span></p>
-          </li>
-          <li class="Link" data-id="sweet-pursuit">
-            <p class="Link-wrapper"><span>2016 _ Sweet Pursuit</span></p>
-          </li>
-          <li class="Link" data-id="ricochet">
-            <p class="Link-wrapper"><span>2016 _ Ricochet</span></p>
-          </li>
-          <li class="Link" data-id="o-de-sisley">
-            <p class="Link-wrapper"><span>2016 _ L'O de Sisley</span></p>
-          </li>
-          <li class="Link _hidden" data-id="call-to-make">
-            <p class="Link-wrapper"><span>2016 _ Call to make</span></p>
-          </li>
-          <li class="Link" data-id="shooting-star-equalizer">
-            <p class="Link-wrapper"><span>2016 _ Shooting Star Equalizer</span></p>
-          </li>
-          <li class="Link" data-id="sncf-prevision">
-            <p class="Link-wrapper"><span>2015 _ SNCF Prévisions</span></p>
-          </li>
-        </ul>
-      </section>
-      <!-- ABOUT PART -->
-      <section id="about-part" class="About _wrapper _hidden">
-        <p class="About-title">
-          <span>Hi,</span>
-        </p>
-        <p class="About-paragraph">
-          <span>I'm a French freelancer freshly based in Toronto, Canada.</span>
-        </p>
-        <p class="About-paragraph">
-          <span>I love doing code to create interactive things!</span>
-        </p>
-        <p class="About-paragraph">
-          <span>Especially with javascript and Webgl <strong class="fire">🔥</strong>!</span>
-        </p>
-        <footer class="About-footer">
-          <button class="Link About-paragraph"><a target="_blank" href="{{BASENAME}}jeremie_boulay_resume.pdf" class="Link-wrapper"><span>See my Resume</span></a></button>
-          <ul class="About-sharings">
-            <li class="Link"><a target="_blank" href="https://github.com/Jeremboo" class="Link-wrapper"><span><img src="{{ASSET_PATH}}svg/github.svg" alt="GitHub"></span></a></li>
-            <li class="Link"><a target="_blank" href="https://twitter.com/JeremBoo" class="Link-wrapper"><span><img src="{{ASSET_PATH}}svg/twitter.svg" alt="Twitter"></span></a></li>
-            <li class="Link"><a target="_blank" href="http://codepen.io/Jeremboo/" class="Link-wrapper"><span><img src="{{ASSET_PATH}}svg/codepen.svg" alt="CodePen"></span></a></li>
-            <li class="Link"><a target="_blank" href="https://vimeo.com/channels/1133031/page:1" class="Link-wrapper"><span><img src="{{ASSET_PATH}}svg/vimeo.svg" alt="Vimeo"></span></a></li>
-            <li class="Link _linkedin"><a target="_blank" href="https://fr.linkedin.com/in/j%C3%A9r%C3%A9mie-boulay-9b005a51" class="Link-wrapper"><span><img src="{{ASSET_PATH}}svg/linkedin.svg" alt="Linkedin"></span></a></li>
-            <li class="Link _mail"><a href="mailto:jeremi.boulay@gmail.com" class="Link-wrapper"><span><img src="{{ASSET_PATH}}svg/envelope.svg" alt="Mail to"></span></a></li>
+    <header class="Header">
+      <h1 class="Header-title">
+        <span id="title">
+          <span>Jérémie</span>
+          <span>Boulay</span>
+        </span>
+        <span id="subtitle" class="Header-subtitle"><span>- Creative Developer -</span></span>
+      </h1>
+    </header>
+    <section class="Content _wrapper">
+      <section class="Content-wrapper _wrapper">
+        <!-- PROJECT PART -->
+        <section id="projects-part" class="Projects _wrapper">
+          <ul class="Projects-list _wrapper">
+            <li class="Link _main" data-id="scribble-lab">
+              <p class="Link-wrapper"><span>Scribble lab</span></p>
+            </li>
+            <li class="Link" data-id="la-mer-webar">
+              <p class="Link-wrapper">
+                <span>2019 _ La Mer AR Experiment</span>
+              </p>
+            </li>
+            <li class="Link" data-id="riot-games">
+              <p class="Link-wrapper">
+                <span>2019 _ Riot's games websites</span>
+              </p>
+            </li>
+            <li class="Link" data-id="days-of-types">
+              <p class="Link-wrapper"><span>2019 _ 36 Days of Types</span></p>
+            </li>
+            <li class="Link" data-id="design-my-smart">
+              <p class="Link-wrapper"><span>2018 _ Design my smart</span></p>
+            </li>
+            <li class="Link _hidden" data-id="msc-roulette">
+              <p class="Link-wrapper"><span>2018 _ MSC Roulette</span></p>
+            </li>
+            <li class="Link" data-id="wellnesslab">
+              <p class="Link-wrapper"><span>2018 _ Wellnesslab</span></p>
+            </li>
+            <li class="Link _hidden" data-id="woli">
+              <p class="Link-wrapper"><span>2018 _ Woli</span></p>
+            </li>
+            <li class="Link _hidden" data-id="typox">
+              <p class="Link-wrapper"><span>2017 _ TypoX</span></p>
+            </li>
+            <li class="Link _hidden" data-id="inrs">
+              <p class="Link-wrapper">
+                <span>2017 _ INRS Fête ses 70 ans</span>
+              </p>
+            </li>
+            <li class="Link _hidden" data-id="smart-electric-drive">
+              <p class="Link-wrapper">
+                <span>2017 _ Smart Electric Drive</span>
+              </p>
+            </li>
+            <li class="Link _hidden" data-id="brainstorm">
+              <p class="Link-wrapper"><span>2017 _ Brainstorm Proto</span></p>
+            </li>
+            <li class="Link" data-id="omniwomen">
+              <p class="Link-wrapper"><span>2017 _ Omniwomen</span></p>
+            </li>
+            <li class="Link _hidden" data-id="voeux-sncf">
+              <p class="Link-wrapper"><span>2016 _ Voeux Voyage SNCF</span></p>
+            </li>
+            <li class="Link" data-id="sweet-pursuit">
+              <p class="Link-wrapper"><span>2016 _ Sweet Pursuit</span></p>
+            </li>
+            <li class="Link" data-id="ricochet">
+              <p class="Link-wrapper"><span>2016 _ Ricochet</span></p>
+            </li>
+            <li class="Link" data-id="o-de-sisley">
+              <p class="Link-wrapper"><span>2016 _ L'O de Sisley</span></p>
+            </li>
+            <li class="Link _hidden" data-id="call-to-make">
+              <p class="Link-wrapper"><span>2016 _ Call to make</span></p>
+            </li>
+            <li class="Link" data-id="shooting-star-equalizer">
+              <p class="Link-wrapper">
+                <span>2016 _ Shooting Star Equalizer</span>
+              </p>
+            </li>
+            <li class="Link" data-id="sncf-prevision">
+              <p class="Link-wrapper"><span>2015 _ SNCF Prévisions</span></p>
+            </li>
           </ul>
-        </footer>
+        </section>
+        <!-- ABOUT PART -->
+        <section id="about-part" class="About _wrapper _hidden">
+          <p class="About-title">
+            <span>Hi,</span>
+          </p>
+          <p class="About-paragraph">
+            <span>I'm a French freelancer freshly based in Toronto, Canada.</span>
+          </p>
+          <p class="About-paragraph">
+            <span>I love doing code to create interactive things!</span>
+          </p>
+          <p class="About-paragraph">
+            <span>
+              Especially with javascript and Webgl
+              <strong class="fire">🔥</strong>
+              !
+            </span>
+          </p>
+          <footer class="About-footer">
+            <button class="Link About-paragraph">
+              <a target="_blank" href="{{BASENAME}}jeremie_boulay_resume.pdf" class="Link-wrapper"><span>See my Resume</span></a>
+            </button>
+            <ul class="About-sharings">
+              <li class="Link">
+                <a target="_blank" href="https://github.com/Jeremboo" class="Link-wrapper">
+                  <span><img src="{{ASSET_PATH}}svg/github.svg" alt="GitHub" /></span>
+                </a>
+              </li>
+              <li class="Link">
+                <a target="_blank" href="https://twitter.com/JeremBoo" class="Link-wrapper">
+                  <span><img src="{{ASSET_PATH}}svg/twitter.svg" alt="Twitter" /></span>
+                </a>
+              </li>
+              <li class="Link">
+                <a target="_blank" href="http://codepen.io/Jeremboo/" class="Link-wrapper">
+                  <span><img src="{{ASSET_PATH}}svg/codepen.svg" alt="CodePen" /></span>
+                </a>
+              </li>
+              <li class="Link">
+                <a target="_blank" href="https://vimeo.com/channels/1133031/page:1" class="Link-wrapper">
+                  <span><img src="{{ASSET_PATH}}svg/vimeo.svg" alt="Vimeo" /></span>
+                </a>
+              </li>
+              <li class="Link _linkedin">
+                <a target="_blank" href="https://fr.linkedin.com/in/j%C3%A9r%C3%A9mie-boulay-9b005a51" class="Link-wrapper">
+                  <span><img src="{{ASSET_PATH}}svg/linkedin.svg" alt="Linkedin" /></span>
+                </a>
+              </li>
+              <li class="Link _mail">
+                <a href="mailto:jeremi.boulay@gmail.com" class="Link-wrapper">
+                  <span><img src="{{ASSET_PATH}}svg/envelope.svg" alt="Mail to" /></span>
+                </a>
+              </li>
+            </ul>
+          </footer>
+        </section>
       </section>
-    </section>
-    <!-- DETAILS IN BOTTOM OF THE PAGE -->
-    <section class="Content-details">
-      <ul class="Details">
-        <li id="scribble-lab" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">Scribble Lab</h2></header>
-          <p class="Details-line"><span>A place where I experiment, explore and prototype about ideas or projects.</span></p>
-          <p class="Details-line"><span>Usually accompanied by GIFs and code !</span></p>
-          <button class="Link"><a target="_blank" href="https://github.com/Jeremboo/codevember" class="Link-wrapper"><span>See online</span></a></button>
-        </li>
-        <li id="design-my-smart" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2018 _ Design my smart</h2></header>
-          <p class="Details-line"><span>Web configurator for Smart to place stickers and texts on 3 types of cars.</span></p>
-          <p class="Details-line"><span>Realized at Proximity BBDO Paris, I mainly worked on the webgl part</span></p>
-          <p class="Details-line"><span>(scene, car rendering, stickers handling) and the website animations.</span></p>
-          <button class="Link"><a target="_blank" href="https://www.designmy.smart.com" class="Link-wrapper"><span>See online</span></a></button>
-        </li>
-        <li id="msc-roulette" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2018 _ MSC Roulette</h2></header>
-          <p class="Details-line"><span>Msc Roulette</span></p>
-          <button class="Link"><a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a></button>
-        </li>
-        <li id="wellnesslab" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2018 _ Wellnesslab</h2></header>
-          <p class="Details-line"><span>Freelance project made for Pamm Hong, visual artist.</span></p>
-          <p class="Details-line"><span>Interactive shapes representing her creations evolve through a questionnaire.</span></p>
-          <p class="Details-line"><span>Exposed during the Sydney Design Festival 2018.
-          </span></p>
-          <button class="Link"><a target="_blank" href="https://www.broadsheet.com.au/sydney/entertainment/article/tamagotchi-you-has-important-lesson-teach-you-about-internet" class="Link-wrapper"><span>See the article</span></a></button>
-          <button class="Link"><a target="_blank" href="http://watermelonsugar.cc/wellnesslab/" class="Link-wrapper"><span>Web version</span></a></button>
-        </li>
-        <li id="woli" class="Details-wrapper _hidden">
-          <p class="Details-line"><span>Woli</span></p>
-          <button class="Link"><a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a></button>
-        </li>
-        <li id="typox" class="Details-wrapper _hidden">
-          <p class="Details-line"><span>TypoX</span></p>
-          <button class="Link"><a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a></button>
-        </li>
-        <li id="inrs" class="Details-wrapper _hidden">
-          <p class="Details-line"><span>INRS Freelance project</span></p>
-          <button class="Link"><a target="_blank" href="http://exposition-affiches.inrs.fr" class="Link-wrapper"><span>See the project</span></a></button>
-        </li>
-        <li id="smart-electric-drive" class="Details-wrapper _hidden">
-          <p class="Details-line"><span>Landing page of the news Smart's electric cars.</span></p>
-          <p class="Details-line"><span>I was lead developer on this project at Proximity BBDO Paris.</span></p>
-          <p class="Details-line"><span>I worked on a parallax fluid system and I designed the animations.</span></p>
-          <button class="Link"><a target="_blank" href="https://vimeo.com/246451865" class="Link-wrapper"><span>See the video</span></a></button>
-        </li>
-        <li id="brainstorm" class="Details-wrapper _hidden">
-          <p class="Details-line"><span>Brainstorm</span></p>
-          <button class="Link"><a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a></button>
-        </li>
-        <li id="omniwomen" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2017 _ Omniwomen</h2></header>
-          <p class="Details-line"><span>Main page of the 2017 Omnimowen conference.</span></p>
-          <p class="Details-line"><span>I was lead front developer on this project at Proximity BBDO Paris.</span></p>
-          <p class="Details-line"><span>Developed with React and Three.js. Linked to a PHP Rest API.</span></p>
-          <button class="Link"><a target="_blank" href="https://vimeo.com/226695726" class="Link-wrapper"><span>See the video</span></a></button>
-          <button class="Link"><a target="_blank" href="http://www.omniwomen.fr/" class="Link-wrapper"><span>2018 version</span></a></button>
-        </li>
-        <li id="voeux-sncf" class="Details-wrapper _hidden">
-          <p class="Details-line"><span>Greeting card for the year 2017 for Voyage-sncf.</span></p>
-          <p class="Details-line"><span>I was lead developer on this project at Proximity BBDO Paris.</span></p>
-          <p class="Details-line"><span>I also participed to the conception part.</span></p>
-          <button class="Link"><a target="_blank" href="https://vimeo.com/202891167" class="Link-wrapper"><span>See the video</span></a></button>
-        </li>
-        <li id="sweet-pursuit" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2016 _ Sweet Pursuit</h2></header>
-          <p class="Details-line"><span>Little game in webgl for ChristmasExperiment 2016.</span></p>
-          <p class="Details-line"><span>Made with Soufiane Lasri (dev) and Sophie Broche (design).</span></p>
-          <p class="Details-line"><span>You have to find hidden candies on a cute planet to help Santa Claus to prepare his packages.</span></p>
-          <button class="Link"><a target="_blank" href="https://christmasexperiments.com/2016/12/sweet-pursuit/" class="Link-wrapper"><span>See online</span></a></button>
-        </li>
-        <li id="ricochet" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2016 _ Ricochet</h2></header>
-          <p class="Details-line"><span>An interactive musical installation with motion capture for deaf people.</span></p>
-          <p class="Details-line"><span>Prototyped at Gobelins, l'école de l'image. I mainly worked on the websocket server,</span></p>
-          <p class="Details-line"><span>the communication protocols througth OpenFramework, the kinect motion capture and the cubes crafting.</span></p>
-          <button class="Link"><a target="_blank" href="https://vimeo.com/ricochetapp" class="Link-wrapper"><span>See videos</span></a></button>
-          <button class="Link"><a target="_blank" href="https://github.com/ricochetGobz/ricochet" class="Link-wrapper"><span>on github</span></a></button>
-        </li>
-        <li id="o-de-sisley" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2016 _ L'O de Sisley</h2></header>
-          <p class="Details-line"><span>IOS application for Sisley. An orchid evolves according to your daily mood.</span></p>
-          <p class="Details-line"><span>Prototype made in collaboration at Gobelins, l'école de l'image.</span></p>
-          <p class="Details-line"><span>I mainly worked of the orchid rendering with Three.js.</span></p>
-          <button class="Link"><a target="_blank" href="https://vimeo.com/183212234" class="Link-wrapper"><span>See the video</span></a></button>
-          <button class="Link"><a target="_blank" href="http://jeremieboulay.fr/o-de-sisley" class="Link-wrapper"><span>demo version</span></a></button>
-        </li>
-        <li id="call-to-make" class="Details-wrapper _hidden">
-          <p class="Details-line"><span>Call to make</span></p>
-          <button class="Link"><a target="_blank" href="https://github.com/Jeremboo/callToMake" class="Link-wrapper"><span>See on github</span></a></button>
-        </li>
-        <li id="shooting-star-equalizer" class="Details-wrapper _hidden">
-          <header class="Details-header"><h2 class="Details-title">2016 _ Shooting Star Equalizer</h2></header>
-          <p class="Details-line"><span>My contribution to the Gobelins Sound Experiments website.</span></p>
-          <p class="Details-line"><span>Made during a audio and Three.js workshop</span></p>
-          <button class="Link"><a target="_blank" href="http://jeremieboulay.fr/projects/shootinStarEqualiser/" class="Link-wrapper"><span>See online</span></a></button>
-          <button class="Link"><a target="_blank" href="https://www.gobelins.fr/sound-experiments" class="Link-wrapper"><span>the article</span></a></button>
-        </li>
-        <li id="sncf-prevision" class="Details-wrapper _hidden">
-            <header class="Details-header"><h2 class="Details-title">2015 _ SNCF Prévisions</h2></header>
-            <p class="Details-line"><span>Web application for the SNCF using daily trafic data to forecast potential problems.</span></p>
-            <p class="Details-line"><span>Made with Sophie Broche (design) at Gobelins, l'école de l'image.</span></p>
-            <p class="Details-line"><span>I managed a noSQL database of the traffic, sales, accidents of each station and each day.</span></p>
+      <!-- DETAILS IN BOTTOM OF THE PAGE -->
+      <section class="Content-details">
+        <ul class="Details">
+          <li id="scribble-lab" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">Scribble Lab</h2>
+            </header>
+            <p class="Details-line">
+              <span>A place where I experiment, explore and prototype about ideas or projects.</span>
+            </p>
+            <p class="Details-line">
+              <span>Usually accompanied by GIFs and code !</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://github.com/Jeremboo/codevember" class="Link-wrapper"><span>See online</span></a>
+            </button>
+          </li>
+          <li id="la-mer-webar" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2018 _ Design my smart</h2>
+            </header>
+            <p class="Details-line">
+              <span>
+                I've joined the Jam3's team to create an WebAR experience exposed in airports across the globe!
+              </span>
+            </p>
+            <p class="Details-line">
+              <span>
+                I mainly worked on the front-end and the UI animations of the experience.
+              </span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://www.youtube.com/watch?v=UEbXabvE3Vs" class="Link-wrapper"><span>See the video</span></a>
+            </button>
+          </li>
+          <li id="riot-games" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2018 _ Riot's games website recast</h2>
+            </header>
+            <p class="Details-line">
+              <span>
+                I've been requested by All Boat Rise to work on the redesign of the Riot's games web content!
+              </span>
+            </p>
+            <p class="Details-line">
+              <span>
+                That also included the total recast of the main League of legend's website.
+              </span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://na.leagueoflegends.com/en-us" class="Link-wrapper"><span>See online</span></a>
+            </button>
+          </li>
+          <li id="days-of-types" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2019 _ 36 Days of Types</h2>
+            </header>
+            <p class="Details-line">
+              <span>
+                With the Reflektor team, we joined designers for the 36 Days of Types challenge!
+              </span>
+            </p>
+            <p class="Details-line">
+              <span>
+                In addition, I've also been in charge to lead the development of the website.
+              </span>
+            </p>
+            <p class="Details-line">
+              <span>It has been awarded Site of the day by FWA!</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://36days.reflektor.digital/" class="Link-wrapper"><span>See online</span></a>
+            </button>
+          </li>
+          <li id="design-my-smart" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2018 _ Design my smart</h2>
+            </header>
+            <p class="Details-line">
+              <span>Web configurator for Smart to place stickers and texts on 3 types of cars.</span>
+            </p>
+            <p class="Details-line">
+              <span>Realized at Proximity BBDO Paris, I mainly worked on the webgl part</span>
+            </p>
+            <p class="Details-line">
+              <span>(scene, car rendering, stickers handling) and the website animations.</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://www.designmy.smart.com" class="Link-wrapper"><span>See online</span></a>
+            </button>
+          </li>
+          <li id="msc-roulette" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2018 _ MSC Roulette</h2>
+            </header>
+            <p class="Details-line"><span>Msc Roulette</span></p>
+            <button class="Link">
+              <a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a>
+            </button>
+          </li>
+          <li id="wellnesslab" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2018 _ Wellnesslab</h2>
+            </header>
+            <p class="Details-line">
+              <span>Freelance project made for Pamm Hong, visual artist.</span>
+            </p>
+            <p class="Details-line">
+              <span>Interactive shapes representing her creations evolve through a questionnaire.</span>
+            </p>
+            <p class="Details-line">
+              <span>Exposed during the Sydney Design Festival 2018.</span>
+            </p>
+            <button class="Link">
+              <a
+                target="_blank"
+                href="https://www.broadsheet.com.au/sydney/entertainment/article/tamagotchi-you-has-important-lesson-teach-you-about-internet"
+                class="Link-wrapper"
+              >
+                <span>See the article</span>
+              </a>
+            </button>
+            <button class="Link">
+              <a target="_blank" href="http://watermelonsugar.cc/wellnesslab/" class="Link-wrapper"><span>Web version</span></a>
+            </button>
+          </li>
+          <li id="woli" class="Details-wrapper _hidden">
+            <p class="Details-line"><span>Woli</span></p>
+            <button class="Link">
+              <a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a>
+            </button>
+          </li>
+          <li id="typox" class="Details-wrapper _hidden">
+            <p class="Details-line"><span>TypoX</span></p>
+            <button class="Link">
+              <a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a>
+            </button>
+          </li>
+          <li id="inrs" class="Details-wrapper _hidden">
+            <p class="Details-line"><span>INRS Freelance project</span></p>
+            <button class="Link">
+              <a target="_blank" href="http://exposition-affiches.inrs.fr" class="Link-wrapper"><span>See the project</span></a>
+            </button>
+          </li>
+          <li id="smart-electric-drive" class="Details-wrapper _hidden">
+            <p class="Details-line">
+              <span>Landing page of the news Smart's electric cars.</span>
+            </p>
+            <p class="Details-line">
+              <span>I was lead developer on this project at Proximity BBDO Paris.</span>
+            </p>
+            <p class="Details-line">
+              <span>I worked on a parallax fluid system and I designed the animations.</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://vimeo.com/246451865" class="Link-wrapper"><span>See the video</span></a>
+            </button>
+          </li>
+          <li id="brainstorm" class="Details-wrapper _hidden">
+            <p class="Details-line"><span>Brainstorm</span></p>
+            <button class="Link">
+              <a target="_blank" href="" class="Link-wrapper"><span>See the project</span></a>
+            </button>
+          </li>
+          <li id="omniwomen" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2017 _ Omniwomen</h2>
+            </header>
+            <p class="Details-line">
+              <span>Main page of the 2017 Omnimowen conference.</span>
+            </p>
+            <p class="Details-line">
+              <span>I was lead front developer on this project at Proximity BBDO Paris.</span>
+            </p>
+            <p class="Details-line">
+              <span>Developed with React and Three.js. Linked to a PHP Rest API.</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://vimeo.com/226695726" class="Link-wrapper"><span>See the video</span></a>
+            </button>
+            <button class="Link">
+              <a target="_blank" href="http://www.omniwomen.fr/" class="Link-wrapper"><span>2018 version</span></a>
+            </button>
+          </li>
+          <li id="voeux-sncf" class="Details-wrapper _hidden">
+            <p class="Details-line">
+              <span>Greeting card for the year 2017 for Voyage-sncf.</span>
+            </p>
+            <p class="Details-line">
+              <span>I was lead developer on this project at Proximity BBDO Paris.</span>
+            </p>
+            <p class="Details-line">
+              <span>I also participed to the conception part.</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://vimeo.com/202891167" class="Link-wrapper"><span>See the video</span></a>
+            </button>
+          </li>
+          <li id="sweet-pursuit" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2016 _ Sweet Pursuit</h2>
+            </header>
+            <p class="Details-line">
+              <span>Little game in webgl for ChristmasExperiment 2016.</span>
+            </p>
+            <p class="Details-line">
+              <span>Made with Soufiane Lasri (dev) and Sophie Broche (design).</span>
+            </p>
+            <p class="Details-line">
+              <span>You have to find hidden candies on a cute planet to help Santa Claus to prepare his packages.</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://christmasexperiments.com/2016/12/sweet-pursuit/" class="Link-wrapper">
+                <span>See online</span>
+              </a>
+            </button>
+          </li>
+          <li id="ricochet" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2016 _ Ricochet</h2>
+            </header>
+            <p class="Details-line">
+              <span>An interactive musical installation with motion capture for deaf people.</span>
+            </p>
+            <p class="Details-line">
+              <span>Prototyped at Gobelins, l'école de l'image. I mainly worked on the websocket server,</span>
+            </p>
+            <p class="Details-line">
+              <span>the communication protocols througth OpenFramework, the kinect motion capture and the cubes crafting.</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://vimeo.com/ricochetapp" class="Link-wrapper"><span>See videos</span></a>
+            </button>
+            <button class="Link">
+              <a target="_blank" href="https://github.com/ricochetGobz/ricochet" class="Link-wrapper"><span>on github</span></a>
+            </button>
+          </li>
+          <li id="o-de-sisley" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2016 _ L'O de Sisley</h2>
+            </header>
+            <p class="Details-line">
+              <span>IOS application for Sisley. An orchid evolves according to your daily mood.</span>
+            </p>
+            <p class="Details-line">
+              <span>Prototype made in collaboration at Gobelins, l'école de l'image.</span>
+            </p>
+            <p class="Details-line">
+              <span>I mainly worked of the orchid rendering with Three.js.</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="https://vimeo.com/183212234" class="Link-wrapper"><span>See the video</span></a>
+            </button>
+            <button class="Link">
+              <a target="_blank" href="http://jeremieboulay.fr/o-de-sisley" class="Link-wrapper"><span>demo version</span></a>
+            </button>
+          </li>
+          <li id="call-to-make" class="Details-wrapper _hidden">
+            <p class="Details-line"><span>Call to make</span></p>
+            <button class="Link">
+              <a target="_blank" href="https://github.com/Jeremboo/callToMake" class="Link-wrapper"><span>See on github</span></a>
+            </button>
+          </li>
+          <li id="shooting-star-equalizer" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2016 _ Shooting Star Equalizer</h2>
+            </header>
+            <p class="Details-line">
+              <span>My contribution to the Gobelins Sound Experiments website.</span>
+            </p>
+            <p class="Details-line">
+              <span>Made during a audio and Three.js workshop</span>
+            </p>
+            <button class="Link">
+              <a target="_blank" href="http://jeremieboulay.fr/projects/shootinStarEqualiser/" class="Link-wrapper">
+                <span>See online</span>
+              </a>
+            </button>
+            <button class="Link">
+              <a target="_blank" href="https://www.gobelins.fr/sound-experiments" class="Link-wrapper"><span>the article</span></a>
+            </button>
+          </li>
+          <li id="sncf-prevision" class="Details-wrapper _hidden">
+            <header class="Details-header">
+              <h2 class="Details-title">2015 _ SNCF Prévisions</h2>
+            </header>
+            <p class="Details-line">
+              <span>Web application for the SNCF using daily trafic data to forecast potential problems.</span>
+            </p>
+            <p class="Details-line">
+              <span>Made with Sophie Broche (design) at Gobelins, l'école de l'image.</span>
+            </p>
+            <p class="Details-line">
+              <span>I managed a noSQL database of the traffic, sales, accidents of each station and each day.</span>
+            </p>
             <ul class="Details-tags">
               <li class="Details-tag">Node.js</li>
               <li class="Details-tag">NoSQL</li>
               <li class="Details-tag">javascript</li>
             </ul>
-            <button class="Link"><a target="_blank" href="https://sncf-project.herokuapp.com/" class="Link-wrapper"><span>See online</span></a></button>
-        </li>
-      </ul>
+            <button class="Link">
+              <a target="_blank" href="https://sncf-project.herokuapp.com/" class="Link-wrapper"><span>See online</span></a>
+            </button>
+          </li>
+        </ul>
+      </section>
     </section>
-  </section>
 
-  <!-- FOOTER WITH ABOUT BUTTON -->
-  <footer class="Footer">
-    <button id="about-button" class="Link _about">
-      <p class="Link-wrapper">
-        <span>About</span>
-      </p>
-    </button>
-  </footer>
+    <!-- FOOTER WITH ABOUT BUTTON -->
+    <footer class="Footer">
+      <button id="about-button" class="Link _about">
+        <p class="Link-wrapper">
+          <span>About</span>
+        </p>
+      </button>
+    </footer>
 
-  <!-- WEBGL -->
-  <section class="Webgl" id="webgl">
-    <canvas class="Webgl-canvas"></canvas>
-  </section>
+    <!-- WEBGL -->
+    <section class="Webgl" id="webgl">
+      <canvas class="Webgl-canvas"></canvas>
+    </section>
 
-  {{#if vendor}}
+    {{#if vendor}}
     <script type="text/javascript" src="{{vendor}}"></script>
-  {{/if}}
-  <script type="text/javascript" src="{{bundle}}"></script>
+    {{/if}}
+    <script type="text/javascript" src="{{bundle}}"></script>
   </body>
 </html>

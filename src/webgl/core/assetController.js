@@ -17,6 +17,21 @@ const ASSET_PACKS = {
   ],
   projects: [
     {
+      name: 'la-mer-webar',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/la-mer-webar.png',
+    },
+    {
+      name: 'days-of-types',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/days-of-types.png',
+    },
+    {
+      name: 'riot-games',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/riot-games.png',
+    },
+    {
       name: 'design-my-smart',
       type: ASSET_TYPES.TEX,
       url: 'assets/images/previews/design-my-smart.png',
@@ -113,7 +128,7 @@ const ASSET_PACKS = {
     //   type: ASSET_TYPES.TEX,
     //   url: 'assets/images/previews/scribble-10.png',
     // },
-  ]
+  ],
 };
 
 // TODO add gifT loader
@@ -124,7 +139,7 @@ class AssetController {
       // [ASSET_TYPES.OBJ]: new ObjectLoader(),
       // [ASSET_TYPES.JSON]: new JSONLoader(),
       [ASSET_TYPES.TEX]: new TextureLoader(),
-      [ASSET_TYPES.IMG]: new ImageLoader()
+      [ASSET_TYPES.IMG]: new ImageLoader(),
     };
     this.loadScribbleAndShow = false;
   }
@@ -159,7 +174,7 @@ class AssetController {
    * @return {Promise} [description]
    */
   loadAsset(packName, assetName, onProgress = f => f) {
-    const assetProps = ASSET_PACKS[packName].filter((asset) => asset.name === assetName)[0];
+    const assetProps = ASSET_PACKS[packName].filter(asset => asset.name === assetName)[0];
     return this._loadAsset(assetProps, onProgress);
   }
 
@@ -177,7 +192,7 @@ class AssetController {
         await this._loadAsset(ASSET_PACKS.scribbles[i]);
         setTimeout(() => {
           onAssetLoadedCallback(this.get(ASSET_PACKS.scribbles[i].name));
-        }, (100 * i) + 450);
+        }, 100 * i + 450);
       }
     }
   }
@@ -244,7 +259,7 @@ class AssetController {
           console.log(`ERROR._loadAsset(): ${name} couldn't loaded.`);
           this.assets[name] = false;
           resolve();
-        }
+        },
       );
     });
   }
