@@ -1,4 +1,3 @@
-
 .Link {
   box-sizing: border-box;
   padding: $margin * 0.25 0;
@@ -8,6 +7,10 @@
   // animation
   overflow: hidden;
   padding-right: 5px;
+
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
 
   // Imgs
   img {
@@ -23,7 +26,8 @@
     width: 100%;
     height: 100%;
 
-    &::after, span {
+    &::after,
+    span {
       display: block;
       transition: 0.2s;
     }
@@ -55,7 +59,9 @@
   &._open {
     opacity: 1 !important;
 
-    span { transform: translate(5px, -5px); }
+    span {
+      transform: translate(5px, 0px);
+    }
 
     .Link-wrapper:after {
       width: 0% !important;
@@ -68,12 +74,18 @@
   &:hover {
     opacity: 1 !important;
 
-    span { transform: translate(5px, -5px); }
+    span {
+      transform: translate(5px, -5px);
+    }
 
     .Link-wrapper::after {
       width: 100%;
       top: 0px;
       left: 0px;
     }
+  }
+
+  &._open:hover span {
+    transform: translate(5px, 0px);
   }
 }
