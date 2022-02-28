@@ -14,7 +14,32 @@ A place where I experiment, explore and prototype ideas or projects.
 Usually accompanied by GIFs and code !
 (See online)[https://github.com/Jeremboo/codevember]
 
-(2020 \_ Google Cloud HealthCare)[]
+(2021 \_ USAF)[]
+
+(2021 \_ Call oF Duty RoleCall)[https://rolecall.callofduty.com/]
+
+(2021 \_ Pepsi Pop Star)[https://www.youtube.com/watch?v=0Iazp-K56lY]
+I've participated with the Jam3 team to the development of a dancing game experience permanently installed at Hersheypark.
+As Unity developer, I worked on the face capture, the kinect motion tracking and the gameplay where the player have to follow its avatar on screen.
+
+(2021 \_ Ebay)[]
+
+(2020 \_ MoveSnap)[]
+
+(2020 \_ Medal of Honor: Above & Beyond)[https://www.oculus.com/medal-of-honor]
+I had the chance to work on a few WebGL prototypes for helping the Jam3 team to achieve this amazing immersive website for Respawn Entertainment’s Medal of Honor.
+The goal was to test different rendering and postprocessing systems and decide about
+
+brings the 3D feeling of Oculus VR gaming to 2D surfaces. Step into the shoes of a WWII OSS agent, in 360º reality.
+
+(2020 \_ IBM QUANTUM COMPUTING)[https://serenewong.com/ibm-quantum-computers]
+I've developed a webGL data visualizer with Jam3 to accurately represent IBM’s quantum computing processing around the world.
+It's been used as an internal tool at IBM to highlight theirs data during conferences.
+
+(2020 \_ Google Cloud - Healthcare)[https://showcase.withgoogle.com/healthcare-security]
+Along the Jam3's team, I've been worked on this playful experience for Google as Creative Developer.
+I've helped on the conception, the 3D assets production and developed the entire WebGL part.
+(See online)[https://showcase.withgoogle.com/healthcare-security] (See the showcase)[https://www.youtube.com/watch?v=S6HxZ9dh48M&feature=emb_title]
 
 (2019 \_ La Mer AR Experiment)[https://www.youtube.com/watch?v=UEbXabvE3Vs]
 I've joined the Jam3's team to create an WebAR experience exposed in airports across the globe!

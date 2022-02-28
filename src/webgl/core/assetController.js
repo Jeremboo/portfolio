@@ -17,6 +17,21 @@ const ASSET_PACKS = {
   ],
   projects: [
     {
+      name: 'pepsi-pop-star',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/pepsi-pop-star.png',
+    },
+    {
+      name: 'ibm-quantum',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/ibm-quantum.png',
+    },
+    {
+      name: 'google-cloud',
+      type: ASSET_TYPES.TEX,
+      url: 'assets/images/previews/google-cloud.png',
+    },
+    {
       name: 'la-mer-webar',
       type: ASSET_TYPES.TEX,
       url: 'assets/images/previews/la-mer-webar.png',
@@ -154,7 +169,7 @@ class AssetController {
    * Load all assets used directly
    * @return {Promise} [description]
    */
-  loadStartingPack(onProgress = f => f) {
+  loadStartingPack(onProgress = (f) => f) {
     return this.loadPack('starting', onProgress);
   }
 
@@ -163,7 +178,7 @@ class AssetController {
    * @param  {String} packName the name of the pack
    * @return {Promise} [description]
    */
-  loadPack(packName, onProgress = f => f) {
+  loadPack(packName, onProgress = (f) => f) {
     return this._loadPack(ASSET_PACKS[packName], onProgress);
   }
 
@@ -173,8 +188,8 @@ class AssetController {
    * @param  {String} assetName the name of the asset
    * @return {Promise} [description]
    */
-  loadAsset(packName, assetName, onProgress = f => f) {
-    const assetProps = ASSET_PACKS[packName].filter(asset => asset.name === assetName)[0];
+  loadAsset(packName, assetName, onProgress = (f) => f) {
+    const assetProps = ASSET_PACKS[packName].filter((asset) => asset.name === assetName)[0];
     return this._loadAsset(assetProps, onProgress);
   }
 
@@ -239,7 +254,7 @@ class AssetController {
    * @param  {Function} progress   [description]
    * @return {Promise}             [description]
    */
-  _loadAsset({ url, name, type } = {}, progress = f => f) {
+  _loadAsset({ url, name, type } = {}, progress = (f) => f) {
     return new Promise((resolve, reject) => {
       const loader = this._loaders[type];
       if (!loader) {
@@ -279,7 +294,7 @@ class AssetController {
       const { url, name, type } = assetList[i];
 
       let loadingProgress = 0;
-      await this._loadAsset({ url, name, type }, v => {
+      await this._loadAsset({ url, name, type }, (v) => {
         const { loaded, total } = v;
         const progress = persentSolvedPerAssets * (loaded / total);
         onProgress(`${name}...`, progress - loadingProgress);
