@@ -52,7 +52,7 @@
     "isbinaryfile": "^3.0.0",
     "junk": "^2.0.0",
     "merge": "^2.1.1",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "mkdirp": "^0.5.4",
     "mozjpeg": "^6.0.1",
     "node-sass": "^4.13.1",
