@@ -6,8 +6,10 @@ var path = require('path');
 var glob = require('glob');
 var mkdirp = require('mkdirp');
 var execFile = require('child_process').execFile;
-var pngquant = require('pngquant-bin');
-var mozjpeg = require('mozjpeg');
+var pngquant;
+var mozjpeg;
+try { pngquant = require('pngquant-bin'); } catch (e) { pngquant = null; }
+try { mozjpeg = require('mozjpeg'); } catch (e) { mozjpeg = null; }
 var render = require('./template');
 var isbinaryfile = require('isbinaryfile');
 
@@ -55,11 +57,11 @@ function copyFile(outputDir,srcDir,file) {
   var output = path.join(outputDir,file.replace(path.normalize(srcDir),''));
   mkdirp(path.dirname(output),function(err) {
     if (!err) {
-      if (config.NODE_ENV==='production' && file.toLowerCase().indexOf('.png')>-1){
+      if (config.NODE_ENV==='production' && pngquant && file.toLowerCase().indexOf('.png')>-1){
         execFile(pngquant, ['-o', output, file], function (err) {
           if (err) stream(file,output);
         });
-      } else if (config.NODE_ENV==='production' && (config.JPEG_QUALITY!==false && !isNaN(config.JPEG_QUALITY)) && (file.toLowerCase().indexOf('.jpg')>-1 || file.toLowerCase().indexOf('.jpeg')>-1)) {
+      } else if (config.NODE_ENV==='production' && mozjpeg && (config.JPEG_QUALITY!==false && !isNaN(config.JPEG_QUALITY)) && (file.toLowerCase().indexOf('.jpg')>-1 || file.toLowerCase().indexOf('.jpeg')>-1)) {
         execFile(mozjpeg, ['-quality', config.JPEG_QUALITY, '-progressive', '-outfile', output, file], function (err) {
           if (err) stream(file,output);
         });
