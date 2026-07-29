@@ -19,7 +19,7 @@
     "output": "./build/"
   },
   "production": {
-    "BASENAME": "/portfolio/",
+    "BASENAME": "/",
     "timestamp": false,
     "output": "./release/",
     "minify": true,
